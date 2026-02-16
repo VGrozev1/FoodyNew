@@ -27,7 +27,7 @@
         }
     </script>
 </head>
-<body class="font-display bg-background-light dark:bg-background-dark text-[#181411] dark:text-white overflow-hidden">
+<body class="font-display bg-background-light dark:bg-background-dark text-[#181411] dark:text-white overflow-hidden" data-auth-role="restaurant">
 <div class="flex h-screen w-full">
     <!-- Sidebar -->
     <aside class="hidden w-64 flex-col border-r border-[#e6dfdb] dark:border-[#3e2c22] bg-white dark:bg-[#1a120d] lg:flex">
@@ -100,7 +100,13 @@
                 <button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20">
                     <span class="truncate">Go Offline</span>
                 </button>
-                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOyu5JGifO55HVbadLuz_DZuWgoVKWYYx5RM8lIDbpr0rtfao5KWmda3MYyj-I-LQlCBoOA-cdNrjSYNZ4eVGhoMmuf_5w_k3AEHducG94IcPbW3J01Fdl1ja9CkJsPRTE8HP_tft9O3m-yKVGQZfCYVa9qNq3FOSxSsl13ui_WeKeu308QPe12b_AFheNEBfPreKxQSD4BaUNXrajDa0RlrVwncKnrieDq5ec9iEJa6kibYPWrpHdXsqG5-Ft2qZfoEIVZ7oKJ-k");'></div>
+                <div class="flex items-center gap-2">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOyu5JGifO55HVbadLuz_DZuWgoVKWYYx5RM8lIDbpr0rtfao5KWmda3MYyj-I-LQlCBoOA-cdNrjSYNZ4eVGhoMmuf_5w_k3AEHducG94IcPbW3J01Fdl1ja9CkJsPRTE8HP_tft9O3m-yKVGQZfCYVa9qNq3FOSxSsl13ui_WeKeu308QPe12b_AFheNEBfPreKxQSD4BaUNXrajDa0RlrVwncKnrieDq5ec9iEJa6kibYPWrpHdXsqG5-Ft2qZfoEIVZ7oKJ-k");'></div>
+                    <button id="auth-logout-btn" type="button" class="flex items-center gap-1.5 rounded-lg h-9 px-3 text-[#181411] dark:text-white hover:bg-gray-100 dark:hover:bg-[#2c1e16] text-sm font-medium transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">logout</span>
+                        <span class="hidden sm:inline">Log out</span>
+                    </button>
+                </div>
             </div>
         </header>
         <!-- Scrollable Content -->
@@ -336,5 +342,6 @@
         </div>
     </main>
 </div>
+<script src="/js/auth/auth-header.js"></script>
 <script src="/js/restaurant/orders-controller.js"></script>
 </body></html>

@@ -51,7 +51,7 @@
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 min-h-screen flex flex-col">
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 min-h-screen flex flex-col" data-auth-role="client">
 <!-- Top Navigation -->
 <header class="sticky top-0 z-50 w-full bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur border-b border-border-light dark:border-border-dark px-4 lg:px-10 py-3 transition-colors">
     <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
@@ -74,14 +74,20 @@
                 <span class="material-symbols-outlined">shopping_cart</span>
                 <span class="absolute top-2 right-2 size-2 rounded-full bg-primary ring-2 ring-white dark:ring-surface-dark"></span>
             </button>
-            <a href="/login" class="hidden sm:flex items-center justify-center h-10 px-6 rounded-xl bg-surface-light dark:bg-white/10 border border-border-light dark:border-transparent text-text-main dark:text-white text-sm font-bold hover:bg-gray-100 dark:hover:bg-white/20 transition-colors">
+            <a id="header-login" href="/login" class="hidden sm:flex items-center justify-center h-10 px-6 rounded-xl bg-surface-light dark:bg-white/10 border border-border-light dark:border-transparent text-text-main dark:text-white text-sm font-bold hover:bg-gray-100 dark:hover:bg-white/20 transition-colors">
                 Sign In
             </a>
-            <div class="size-10 rounded-full bg-gray-200 bg-center bg-cover border-2 border-white dark:border-gray-700 shadow-sm" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlVTlEFAyfkrP8YePrUl091qjjoMoZZ1ASJyeNe0RaMIp9V5a-Ur-gor2n0jUScV3q9EhXdkRWMO775zar0Cvm8jfiJsYCggdQy4JtteNg7lerhtg77yjqBl4PVUIn71HoBWaUe9VO0daFZPDYbtqhKzC7aBHsUFzvlFQHbLtvxTvL0Y2EwW42yubuw3rhOkuRcEBA95B7-Z3b1S11XDd95qenPDKh7DC0YI9X4m4fKL7TxK1nmiEl_TY16GMBZiXjTH0AqgRGpSQ");'>
+            <div id="header-profile" style="display: none;" class="flex items-center gap-2">
+                <div class="size-10 rounded-full bg-primary/20 bg-center bg-cover border-2 border-primary/40 shadow-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlVTlEFAyfkrP8YePrUl091qjjoMoZZ1ASJyeNe0RaMIp9V5a-Ur-gor2n0jUScV3q9EhXdkRWMO775zar0Cvm8jfiJsYCggdQy4JtteNg7lerhtg77yjqBl4PVUIn71HoBWaUe9VO0daFZPDYbtqhKzC7aBHsUFzvlFQHbLtvxTvL0Y2EwW42yubuw3rhOkuRcEBA95B7-Z3b1S11XDd95qenPDKh7DC0YI9X4m4fKL7TxK1nmiEl_TY16GMBZiXjTH0AqgRGpSQ');"></div>
+                <button id="auth-logout-btn" type="button" class="hidden sm:flex items-center gap-2 rounded-xl h-10 px-4 bg-gray-100 dark:bg-white/10 text-text-main dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    Log out
+                </button>
             </div>
         </div>
     </div>
 </header>
+<script src="/js/auth/auth-header.js"></script>
 <!-- Hero Section -->
 <section class="relative w-full overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"></div>

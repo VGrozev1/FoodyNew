@@ -53,7 +53,7 @@
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-[#181411] dark:text-white font-display overflow-hidden">
+<body class="bg-background-light dark:bg-background-dark text-[#181411] dark:text-white font-display overflow-hidden" data-auth-role="restaurant">
 <div class="flex h-screen w-full">
     <!-- Side Navigation -->
     <aside class="hidden lg:flex w-[280px] flex-col border-r border-[#f5f2f0] dark:border-zinc-800 bg-white dark:bg-zinc-900 h-full flex-shrink-0">
@@ -134,6 +134,13 @@
                     <span class="material-symbols-outlined">notifications</span>
                     <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 border-2 border-white dark:border-zinc-900 rounded-full"></span>
                 </button>
+                <div class="flex items-center gap-2">
+                    <div class="size-10 rounded-full bg-center bg-cover ring-2 ring-primary/20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA977t-e7OAUgpkSCutdlkfPG9IF9p8t4NAyJRa_iF0BudYd4_RDzbLuYkfmo5Xn6UeINX8RZh2RemNpRP-WSdM2D5_ToT4Hm508V0HQioSquwAyioL1KyXezrYWM3LQX4FJ5Taul6rElU5f_WgJC5CaPh-HujVI1FtkMGRa4zZvmPhMk9g1fx4k1ySy7oCumY1g-fDG_upepMreM2OY2LyD4I3kQ-ZORL_-JTrzZShzlMnZFgYtLebWYGb7se-gOa1f57atK-ZufQ');"></div>
+                    <button id="auth-logout-btn" type="button" class="flex items-center gap-1.5 rounded-lg h-9 px-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800 text-sm font-medium transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">logout</span>
+                        <span class="hidden sm:inline">Log out</span>
+                    </button>
+                </div>
             </div>
         </header>
         <!-- Scrollable Dashboard Content -->
@@ -453,5 +460,6 @@
         </main>
     </div>
 </div>
+<script src="/js/auth/auth-header.js"></script>
 <script src="/js/restaurant/dashboard-controller.js"></script>
 </body></html>

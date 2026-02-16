@@ -39,7 +39,7 @@
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark transition-colors duration-200">
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark transition-colors duration-200" data-auth-role="delivery">
 <div class="relative flex min-h-screen flex-col overflow-x-hidden">
     <!-- Top Navigation Bar -->
     <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e6dfdb] dark:border-b-[#3a2d25] bg-card-light dark:bg-card-dark px-6 py-4 lg:px-10">
@@ -65,7 +65,13 @@
             <button class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary/10 text-primary text-sm font-bold leading-normal hover:bg-primary/20 transition-colors">
                 <span class="truncate">Help Center</span>
             </button>
-            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-[#3a2d25]" data-alt="Profile picture of a driver" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWOvq6IujUwRWdr_QXoLI0l24bvozdEncSlVtoPRWaqbKwUBw33n9E886l3UV9FDluesB_8faSJC25qvqz_IjqWGXra-jDqi5AYCh3LKNzPwPG1iCISGO2Jvbn09UOqaxqHeO5iw9ai8G_piov-DhurPGRNrOBn2EPMIF_i1bdK3ETL1-P8wIL-8uVduIFnFscNdmeN4Hx9uFuRXX-6fOFOF838K9feURigolAaw862oUU0GbA8pJIN9FGUImc3DdRn-JCdyX4Kpk");'></div>
+            <div class="flex items-center gap-2">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-[#3a2d25]" data-alt="Profile picture of a driver" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWOvq6IujUwRWdr_QXoLI0l24bvozdEncSlVtoPRWaqbKwUBw33n9E886l3UV9FDluesB_8faSJC25qvqz_IjqWGXra-jDqi5AYCh3LKNzPwPG1iCISGO2Jvbn09UOqaxqHeO5iw9ai8G_piov-DhurPGRNrOBn2EPMIF_i1bdK3ETL1-P8wIL-8uVduIFnFscNdmeN4Hx9uFuRXX-6fOFOF838K9feURigolAaw862oUU0GbA8pJIN9FGUImc3DdRn-JCdyX4Kpk");'></div>
+                <button id="auth-logout-btn" type="button" class="flex items-center gap-1.5 rounded-lg h-9 px-3 text-text-main-light dark:text-text-main-dark hover:bg-black/5 dark:hover:bg-white/10 text-sm font-medium transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    <span class="hidden sm:inline">Log out</span>
+                </button>
+            </div>
         </div>
     </header>
     <!-- Main Content Layout -->
@@ -270,5 +276,6 @@
         </div>
     </main>
 </div>
+<script src="/js/auth/auth-header.js"></script>
 <script src="/js/delivery/order-details-controller.js"></script>
 </body></html>

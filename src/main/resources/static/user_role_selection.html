@@ -29,21 +29,31 @@
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col">
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col" data-auth-role="any">
 <!-- Top Navigation -->
 <header class="w-full bg-white dark:bg-[#1e1e1e] border-b border-solid border-[#f5f2f0] dark:border-[#333] px-4 py-3 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-3 text-[#181411] dark:text-white cursor-pointer">
+        <div class="flex items-center gap-3 text-[#181411] dark:text-white cursor-pointer" onclick="window.location.href='/'">
             <div class="flex items-center justify-center text-primary">
                 <span class="material-symbols-outlined text-3xl">lunch_dining</span>
             </div>
             <h2 class="text-xl font-extrabold leading-tight tracking-[-0.015em]">Foody</h2>
         </div>
-        <a href="/login" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold leading-normal transition-colors">
-            <span class="truncate">Login</span>
-        </a>
+        <div class="flex items-center gap-3">
+            <a id="header-login" href="/login" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold leading-normal transition-colors">
+                <span class="truncate">Login</span>
+            </a>
+            <div id="header-profile" style="display: none;" class="flex items-center gap-2">
+                <div class="size-10 rounded-full bg-primary/20 bg-center bg-cover border-2 border-primary/40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA977t-e7OAUgpkSCutdlkfPG9IF9p8t4NAyJRa_iF0BudYd4_RDzbLuYkfmo5Xn6UeINX8RZh2RemNpRP-WSdM2D5_ToT4Hm508V0HQioSquwAyioL1KyXezrYWM3LQX4FJ5Taul6rElU5f_WgJC5CaPh-HujVI1FtkMGRa4zZvmPhMk9g1fx4k1ySy7oCumY1g-fDG_upepMreM2OY2LyD4I3kQ-ZORL_-JTrzZShzlMnZFgYtLebWYGb7se-gOa1f57atK-ZufQ');"></div>
+                <button id="auth-logout-btn" type="button" class="flex items-center gap-2 rounded-xl h-10 px-4 bg-gray-100 dark:bg-gray-700 text-[#181411] dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    <span class="truncate">Log out</span>
+                </button>
+            </div>
+        </div>
     </div>
 </header>
+<script src="/js/auth/auth-header.js"></script>
 <!-- Main Content -->
 <main class="flex-grow flex flex-col items-center justify-center px-4 py-10 md:py-20 w-full">
     <div class="w-full max-w-7xl flex flex-col gap-10">

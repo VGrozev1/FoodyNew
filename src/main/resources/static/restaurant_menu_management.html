@@ -48,7 +48,7 @@
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-[#181411] dark:text-white font-display overflow-hidden">
+<body class="bg-background-light dark:bg-background-dark text-[#181411] dark:text-white font-display overflow-hidden" data-auth-role="restaurant">
 <div class="flex h-screen w-full overflow-hidden">
     <!-- Sidebar -->
     <aside class="hidden lg:flex w-72 flex-col border-r border-[#e6dfdb] dark:border-gray-800 bg-white dark:bg-[#1a1614]">
@@ -97,8 +97,9 @@
                     <p class="text-[#181411] dark:text-white text-sm font-semibold truncate">Burger King</p>
                     <p class="text-[#8a7260] dark:text-gray-400 text-xs truncate">Downtown Branch</p>
                 </div>
-                <button class="ml-auto text-[#8a7260] hover:text-primary dark:text-gray-400 dark:hover:text-white">
+                <button id="auth-logout-btn" type="button" class="ml-auto text-[#8a7260] hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
                     <span class="material-symbols-outlined">logout</span>
+                    <span class="text-sm font-medium">Log out</span>
                 </button>
             </div>
         </div>
@@ -413,5 +414,6 @@
         </div>
     </main>
 </div>
+<script src="/js/auth/auth-header.js"></script>
 <script src="/js/restaurant/menu-controller.js"></script>
 </body></html>
