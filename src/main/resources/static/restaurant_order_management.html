@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Restaurant Order Management - Foody</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f26c0d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#181411] dark:text-white overflow-hidden">
+<div class="flex h-screen w-full">
+    <!-- Sidebar -->
+    <aside class="hidden w-64 flex-col border-r border-[#e6dfdb] dark:border-[#3e2c22] bg-white dark:bg-[#1a120d] lg:flex">
+        <div class="flex h-full flex-col justify-between p-4">
+            <div class="flex flex-col gap-4">
+                <!-- Brand / Restaurant Info -->
+                <div class="flex items-center gap-3 px-2 py-2">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 shadow-sm border border-gray-100" data-alt="Burger King Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcOPX7HW2Y-4h-cjqyg89-T2InkejSUlDeIjH97WNKsNJBl7iY0NYMVocEXl08D2UVEGGt7zpVi11bMeK6pIyVd2Am4DRtFtQqMuT9WkADqJSKdoMQ1lijfLZX4wAPI8vZjhhFAtYh72LvqrqqxFZeSJiYvlSL09aDsr28z5tPUwKDT9owwnmq6bC0jymhdQmzm7_GD6DyCBkSyr3Ae175x0v0zvZOA5t8mRHdHu_73YCVHGoG4Dc17r_kEvmPhn2mrVZcyv8kY50");'></div>
+                    <div class="flex flex-col overflow-hidden">
+                        <h1 class="text-[#181411] dark:text-white text-base font-bold leading-tight truncate">Burger King</h1>
+                        <p class="text-[#8a7260] dark:text-[#9c8675] text-xs font-normal leading-normal truncate">Downtown Branch</p>
+                    </div>
+                </div>
+                <!-- Navigation -->
+                <nav class="flex flex-col gap-2 mt-4">
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary/10 text-primary" href="/all_orders">
+                        <span class="material-symbols-outlined fill-1">dashboard</span>
+                        <p class="text-sm font-bold leading-normal">Live Orders</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-[#181411] dark:text-[#dcdcdc] hover:bg-[#f5f2f0] dark:hover:bg-[#2c1e16] transition-colors" href="/all_orders">
+                        <span class="material-symbols-outlined">history</span>
+                        <p class="text-sm font-medium leading-normal">Order History</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-[#181411] dark:text-[#dcdcdc] hover:bg-[#f5f2f0] dark:hover:bg-[#2c1e16] transition-colors" href="/myMenu">
+                        <span class="material-symbols-outlined">menu_book</span>
+                        <p class="text-sm font-medium leading-normal">Menu Management</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-[#181411] dark:text-[#dcdcdc] hover:bg-[#f5f2f0] dark:hover:bg-[#2c1e16] transition-colors" href="/myRestaurant">
+                        <span class="material-symbols-outlined">bar_chart</span>
+                        <p class="text-sm font-medium leading-normal">Analytics</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-[#181411] dark:text-[#dcdcdc] hover:bg-[#f5f2f0] dark:hover:bg-[#2c1e16] transition-colors" href="/myRestaurant">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                </nav>
+            </div>
+            <!-- Bottom Actions -->
+            <div class="flex flex-col gap-4">
+                <div class="px-3 py-4 rounded-xl bg-[#f5f2f0] dark:bg-[#2c1e16] flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#8a7260] dark:text-[#9c8675]">support_agent</span>
+                    <div class="flex flex-col">
+                        <p class="text-xs font-bold text-[#181411] dark:text-white">Need Help?</p>
+                        <p class="text-[10px] text-[#8a7260] dark:text-[#9c8675]">Contact Partner Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <main class="flex flex-1 flex-col h-full overflow-hidden bg-background-light dark:bg-background-dark relative">
+        <!-- Top Header -->
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-[#e6dfdb] dark:border-[#3e2c22] bg-white dark:bg-[#1a120d] px-6 py-3 z-10 shrink-0">
+            <div class="flex items-center gap-4 lg:hidden">
+                <span class="material-symbols-outlined text-[#181411] dark:text-white cursor-pointer">menu</span>
+            </div>
+            <div class="hidden lg:flex flex-col">
+                <h2 class="text-[#181411] dark:text-white text-lg font-bold leading-tight">Kitchen Dashboard</h2>
+                <p class="text-[#8a7260] dark:text-[#9c8675] text-xs font-medium">Tuesday, 24 Oct • 12:30 PM</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-[#f5f2f0] dark:bg-[#2c1e16] px-3 py-1.5 rounded-full">
+                    <div class="size-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-sm font-bold text-[#181411] dark:text-white">Store Open</span>
+                </div>
+                <button class="flex items-center justify-center rounded-xl size-10 bg-[#f5f2f0] dark:bg-[#2c1e16] text-[#181411] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white dark:border-[#1a120d]"></span>
+                </button>
+                <button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20">
+                    <span class="truncate">Go Offline</span>
+                </button>
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOyu5JGifO55HVbadLuz_DZuWgoVKWYYx5RM8lIDbpr0rtfao5KWmda3MYyj-I-LQlCBoOA-cdNrjSYNZ4eVGhoMmuf_5w_k3AEHducG94IcPbW3J01Fdl1ja9CkJsPRTE8HP_tft9O3m-yKVGQZfCYVa9qNq3FOSxSsl13ui_WeKeu308QPe12b_AFheNEBfPreKxQSD4BaUNXrajDa0RlrVwncKnrieDq5ec9iEJa6kibYPWrpHdXsqG5-Ft2qZfoEIVZ7oKJ-k");'></div>
+            </div>
+        </header>
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto overflow-x-hidden p-6">
+            <div class="max-w-[1400px] mx-auto flex flex-col gap-6 h-full">
+                <!-- Stats & Search Row -->
+                <div class="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center">
+                    <!-- Stats -->
+                    <div class="flex gap-4 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 hide-scrollbar">
+                        <div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a120d] border border-[#e6dfdb] dark:border-[#3e2c22] shadow-sm">
+                            <p class="text-[#8a7260] dark:text-[#9c8675] text-sm font-medium">Pending</p>
+                            <p id="pending-count" class="text-primary tracking-tight text-3xl font-bold">3</p>
+                        </div>
+                        <div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a120d] border border-[#e6dfdb] dark:border-[#3e2c22] shadow-sm">
+                            <p class="text-[#8a7260] dark:text-[#9c8675] text-sm font-medium">In Kitchen</p>
+                            <p class="text-[#181411] dark:text-white tracking-tight text-3xl font-bold">8</p>
+                        </div>
+                        <div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-[#1a120d] border border-[#e6dfdb] dark:border-[#3e2c22] shadow-sm">
+                            <p class="text-[#8a7260] dark:text-[#9c8675] text-sm font-medium">Ready</p>
+                            <p class="text-[#181411] dark:text-white tracking-tight text-3xl font-bold">4</p>
+                        </div>
+                        <div class="flex min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-primary/5 dark:bg-primary/10 border border-primary/20 shadow-sm">
+                            <p class="text-[#8a7260] dark:text-[#9c8675] text-sm font-medium">Completed</p>
+                            <p class="text-[#181411] dark:text-white tracking-tight text-3xl font-bold">125</p>
+                        </div>
+                    </div>
+                    <!-- Search -->
+                    <div class="w-full lg:w-96">
+                        <label class="flex w-full items-center rounded-xl bg-white dark:bg-[#1a120d] border border-[#e6dfdb] dark:border-[#3e2c22] px-4 py-3 shadow-sm focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+                            <span class="material-symbols-outlined text-[#8a7260]">search</span>
+                            <input class="w-full bg-transparent border-none text-sm text-[#181411] dark:text-white placeholder-[#8a7260] focus:ring-0 ml-2" placeholder="Search Order ID or Customer..." value=""/>
+                        </label>
+                    </div>
+                </div>
+                <!-- Kanban Board -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 h-full min-h-[500px]">
+                    <!-- Col 1: New Orders -->
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="flex items-center justify-between pb-2 border-b-2 border-primary">
+                            <h3 class="text-lg font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                                New Orders
+                                <span class="flex items-center justify-center bg-primary text-white text-xs font-bold rounded-full size-6">3</span>
+                            </h3>
+                            <button class="text-sm font-bold text-primary hover:text-orange-700">Mute Sound</button>
+                        </div>
+                        <!-- New Order Card 1 (Animated/Urgent) -->
+                        <div class="group relative flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1a120d] p-5 shadow-md border-l-4 border-primary dark:border-primary border-y border-r border-[#e6dfdb] dark:border-[#3e2c22] transition-all hover:-translate-y-1">
+                            <div class="absolute top-4 right-4 animate-pulse">
+                                <span class="inline-flex h-3 w-3 rounded-full bg-primary"></span>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">NEW</span>
+                                    <p class="text-[#8a7260] dark:text-[#9c8675] text-xs font-medium">2 mins ago</p>
+                                </div>
+                                <h4 class="text-xl font-bold text-[#181411] dark:text-white">#9921</h4>
+                            </div>
+                            <div class="flex items-center gap-3 py-2 border-b border-dashed border-[#e6dfdb] dark:border-[#3e2c22]">
+                                <div class="bg-gray-100 dark:bg-gray-800 rounded-full p-2">
+                                    <span class="material-symbols-outlined text-gray-500 text-[20px]">person</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-[#181411] dark:text-white">Sarah Jenkins</p>
+                                    <p class="text-xs text-[#8a7260]">2 items • $24.50</p>
+                                </div>
+                            </div>
+                            <ul class="text-sm text-[#181411] dark:text-[#dcdcdc] space-y-1.5 py-2">
+                                <li class="flex gap-2">
+                                    <span class="font-bold text-[#181411] dark:text-white">1x</span>
+                                    <span>Spicy Chicken Deluxe</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <span class="font-bold text-[#181411] dark:text-white">1x</span>
+                                    <span>Lg. Curly Fries</span>
+                                </li>
+                            </ul>
+                            <div class="flex gap-3 mt-2">
+                                <button class="flex-1 bg-primary hover:bg-orange-600 text-white py-2.5 rounded-lg font-bold text-sm shadow-md shadow-primary/20 transition-all">Accept</button>
+                                <button class="px-4 border border-[#e6dfdb] dark:border-[#3e2c22] hover:bg-gray-50 dark:hover:bg-[#2c1e16] text-[#181411] dark:text-white py-2.5 rounded-lg font-bold text-sm transition-all">Decline</button>
+                            </div>
+                        </div>
+                        <!-- New Order Card 2 -->
+                        <div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1a120d] p-5 shadow-sm border border-[#e6dfdb] dark:border-[#3e2c22] opacity-90 hover:opacity-100 transition-all">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-[#8a7260] dark:text-[#9c8675] text-xs font-medium mb-1">5 mins ago</p>
+                                    <h4 class="text-lg font-bold text-[#181411] dark:text-white">#9920</h4>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 py-2 border-b border-dashed border-[#e6dfdb] dark:border-[#3e2c22]">
+                                <div class="bg-gray-100 dark:bg-gray-800 rounded-full p-2">
+                                    <span class="material-symbols-outlined text-gray-500 text-[20px]">person</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-[#181411] dark:text-white">Mike Ross</p>
+                                    <p class="text-xs text-[#8a7260]">4 items • $48.20</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mt-2">
+                                <button class="flex-1 bg-primary text-white py-2 rounded-lg font-bold text-sm shadow-sm">Accept</button>
+                                <button class="px-4 border border-[#e6dfdb] dark:border-[#3e2c22] text-[#181411] dark:text-white py-2 rounded-lg font-bold text-sm">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Col 2: In Kitchen -->
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="flex items-center justify-between pb-2 border-b-2 border-blue-500">
+                            <h3 class="text-lg font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                                In Kitchen
+                                <span class="flex items-center justify-center bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-200 text-xs font-bold rounded-full size-6">8</span>
+                            </h3>
+                        </div>
+                        <!-- Preparing Card 1 -->
+                        <div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1a120d] p-5 shadow-sm border border-[#e6dfdb] dark:border-[#3e2c22]">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="text-lg font-bold text-[#181411] dark:text-white">#9918</h4>
+                                <span class="flex items-center gap-1 text-xs font-bold text-orange-600 bg-orange-100 dark:bg-orange-900/30 dark:text-orange-400 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">timer</span> 14:20
+                                    </span>
+                            </div>
+                            <div class="bg-[#f8f7f5] dark:bg-[#2c1e16] p-3 rounded-lg">
+                                <ul class="text-sm text-[#181411] dark:text-[#dcdcdc] space-y-2">
+                                    <li class="flex justify-between items-start">
+<span class="flex gap-2">
+<span class="font-bold">2x</span>
+<span>Double Whopper Meal</span>
+</span>
+                                        <span class="material-symbols-outlined text-green-500 text-[18px]">check_circle</span>
+                                    </li>
+                                    <li class="flex justify-between items-start opacity-50">
+<span class="flex gap-2">
+<span class="font-bold">1x</span>
+<span>Onion Rings (L)</span>
+</span>
+                                        <span class="material-symbols-outlined text-gray-400 text-[18px]">radio_button_unchecked</span>
+                                    </li>
+                                    <li class="flex justify-between items-start opacity-50">
+<span class="flex gap-2">
+<span class="font-bold">1x</span>
+<span>Vanilla Shake</span>
+</span>
+                                        <span class="material-symbols-outlined text-gray-400 text-[18px]">radio_button_unchecked</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-2 pt-3 border-t border-[#e6dfdb] dark:border-[#3e2c22]">
+                                <p class="text-xs font-medium text-[#8a7260] mb-3">Note: "No pickles on the Whopper please!"</p>
+                                <button class="w-full bg-[#f2f4f7] dark:bg-[#2c2c2c] hover:bg-primary hover:text-white dark:hover:bg-primary text-[#181411] dark:text-white py-2.5 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2 group">
+                                    <span>Mark as Ready</span>
+                                    <span class="material-symbols-outlined text-[18px] group-hover:text-white">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Preparing Card 2 -->
+                        <div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1a120d] p-5 shadow-sm border border-[#e6dfdb] dark:border-[#3e2c22]">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="text-lg font-bold text-[#181411] dark:text-white">#9915</h4>
+                                <span class="flex items-center gap-1 text-xs font-bold text-green-600 bg-green-100 dark:bg-green-900/30 dark:text-green-400 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">timer</span> 04:10
+                                    </span>
+                            </div>
+                            <ul class="text-sm text-[#181411] dark:text-[#dcdcdc] space-y-1.5 py-1">
+                                <li class="flex gap-2"><span class="font-bold">1x</span> <span>Ceasar Salad</span></li>
+                            </ul>
+                            <button class="mt-2 w-full bg-[#f2f4f7] dark:bg-[#2c2c2c] hover:bg-primary hover:text-white text-[#181411] dark:text-white py-2.5 rounded-lg font-bold text-sm transition-colors">
+                                Mark as Ready
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Col 3: Ready / History -->
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="flex items-center justify-between pb-2 border-b-2 border-green-500">
+                            <h3 class="text-lg font-bold text-[#181411] dark:text-white flex items-center gap-2">
+                                Ready for Pickup
+                                <span class="flex items-center justify-center bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-200 text-xs font-bold rounded-full size-6">4</span>
+                            </h3>
+                        </div>
+                        <!-- Ready Card 1 -->
+                        <div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1a120d] p-5 shadow-sm border border-[#e6dfdb] dark:border-[#3e2c22] relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-xs font-bold text-green-600 bg-green-100 dark:bg-green-900/30 dark:text-green-400 px-2 py-0.5 rounded">READY</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-[#181411] dark:text-white">#9912</h4>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] text-[#8a7260] uppercase font-bold">Driver Arriving</p>
+                                    <p class="text-sm font-bold text-[#181411] dark:text-white">2 min</p>
+                                </div>
+                            </div>
+                            <!-- Driver Info -->
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-[#2c1e16] rounded-lg border border-gray-100 dark:border-[#3e2c22]">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Driver Portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDlxLxHcjDsWXSySffbWzIhvII8cx0E_sWvgE4Az67d71XresPbBz6HY80Bi1LVIFaZd6YfpxrPLBQP4G_m68lfXpnVek-6__7WRDOMX8AjvCGsMBzl4omsH3c8EDqksxIjgTBV2hQkYKahhH7WI3HEYWMXjzPxxy5QYHUCejVXwD_4TPOq5n7gMfLrMR9HzbZ4q2BAsMqGTqsbfXA2XTVCA9ttXZ_XGd-C1rz_ZPJv3rUhxK_yXAhLgRmOc188hxIhntM-JxYAbaE");'></div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-bold text-[#181411] dark:text-white">John Driver</p>
+                                    <div class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-yellow-500 text-[14px] fill-1">star</span>
+                                        <p class="text-xs text-[#8a7260]">4.9</p>
+                                    </div>
+                                </div>
+                                <button class="bg-white dark:bg-[#1a120d] p-2 rounded-lg border border-[#e6dfdb] dark:border-[#3e2c22]">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">call</span>
+                                </button>
+                            </div>
+                            <div class="text-xs text-[#8a7260] mt-1">
+                                Order #9912 • 3 items
+                            </div>
+                            <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg font-bold text-sm shadow-md shadow-green-500/20 transition-all flex items-center justify-center gap-2">
+                                <span>Hand Over Order</span>
+                                <span class="material-symbols-outlined text-[18px]">inventory</span>
+                            </button>
+                        </div>
+                        <!-- Ready Card 2 -->
+                        <div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1a120d] p-5 shadow-sm border border-[#e6dfdb] dark:border-[#3e2c22] opacity-75">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-lg font-bold text-[#181411] dark:text-white">#9910</h4>
+                                    <p class="text-xs text-[#8a7260]">Waiting for driver assignment...</p>
+                                </div>
+                            </div>
+                            <div class="h-1 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gray-300 w-1/3 animate-pulse"></div>
+                            </div>
+                            <button class="w-full bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed py-2.5 rounded-lg font-bold text-sm">
+                                Waiting for Driver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="/js/restaurant/orders-controller.js"></script>
+</body></html>

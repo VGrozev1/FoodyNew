@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Foody Driver - Order Details</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f26c0d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "card-light": "#ffffff",
+                        "card-dark": "#2d2017",
+                        "text-main-light": "#181411",
+                        "text-main-dark": "#ffffff",
+                        "text-sub-light": "#8a7260",
+                        "text-sub-dark": "#b0a095",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark transition-colors duration-200">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e6dfdb] dark:border-b-[#3a2d25] bg-card-light dark:bg-card-dark px-6 py-4 lg:px-10">
+        <div class="flex items-center gap-4">
+            <div class="size-8 text-primary">
+                <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_6_535)">
+                        <path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+                    </g>
+                    <defs>
+                        <clippath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clippath>
+                    </defs>
+                </svg>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Foody Driver</h2>
+        </div>
+        <div class="hidden md:flex flex-1 justify-center gap-8">
+            <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="/myDelivery">Dashboard</a>
+            <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="/myDelivery">Earnings</a>
+            <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="/myDelivery">Settings</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary/10 text-primary text-sm font-bold leading-normal hover:bg-primary/20 transition-colors">
+                <span class="truncate">Help Center</span>
+            </button>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-[#3a2d25]" data-alt="Profile picture of a driver" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWOvq6IujUwRWdr_QXoLI0l24bvozdEncSlVtoPRWaqbKwUBw33n9E886l3UV9FDluesB_8faSJC25qvqz_IjqWGXra-jDqi5AYCh3LKNzPwPG1iCISGO2Jvbn09UOqaxqHeO5iw9ai8G_piov-DhurPGRNrOBn2EPMIF_i1bdK3ETL1-P8wIL-8uVduIFnFscNdmeN4Hx9uFuRXX-6fOFOF838K9feURigolAaw862oUU0GbA8pJIN9FGUImc3DdRn-JCdyX4Kpk");'></div>
+        </div>
+    </header>
+    <!-- Main Content Layout -->
+    <main class="flex-1 flex justify-center py-6 px-4 md:px-8 lg:px-12">
+        <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left Column: Logistics (Map, Status, Actions) -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                <!-- Order Header & Actions -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h1 class="text-3xl font-black leading-tight tracking-[-0.033em]">Order #FD-9928</h1>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="material-symbols-outlined text-primary text-xl">timer</span>
+                            <p class="text-text-sub-light dark:text-text-sub-dark font-medium">Est. Delivery: 12:45 PM</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="flex items-center justify-center rounded-xl h-10 px-4 bg-background-light dark:bg-[#3a2d25] text-text-main-light dark:text-text-main-dark text-sm font-bold border border-[#e6dfdb] dark:border-[#4a3d35] hover:bg-[#e6dfdb] dark:hover:bg-[#4a3d35] transition-colors">
+                            <span class="material-symbols-outlined mr-2 text-[18px]">support_agent</span>
+                            Support
+                        </button>
+                    </div>
+                </div>
+                <!-- Progress Stepper -->
+                <div class="bg-card-light dark:bg-card-dark rounded-xl p-6 border border-[#e6dfdb] dark:border-[#3a2d25] shadow-sm">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-bold text-primary">Preparing</span>
+                        <span class="text-xs text-text-sub-light dark:text-text-sub-dark">Updated 2m ago</span>
+                    </div>
+                    <div class="flex w-full gap-2">
+                        <div class="h-2 flex-1 rounded-full bg-primary"></div>
+                        <div class="h-2 flex-1 rounded-full bg-primary animate-pulse"></div>
+                        <div class="h-2 flex-1 rounded-full bg-[#e6dfdb] dark:bg-[#3a2d25]"></div>
+                        <div class="h-2 flex-1 rounded-full bg-[#e6dfdb] dark:bg-[#3a2d25]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-medium mt-2 text-text-sub-light dark:text-text-sub-dark">
+                        <span>Received</span>
+                        <span class="text-primary font-bold">Preparing</span>
+                        <span>Picked Up</span>
+                        <span>Delivered</span>
+                    </div>
+                </div>
+                <!-- Map Section -->
+                <div class="relative w-full aspect-video md:aspect-[2.5/1] rounded-xl overflow-hidden shadow-sm group">
+                    <div class="absolute inset-0 bg-center bg-cover" data-alt="Map showing route from restaurant to customer" data-location="New York City" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6k7TUT2Mmry7Qp7KQa9jC1sksllJ51ac21OGWy7YH-v5GTw_hufKBiN4XOfEEeJ4ObAAl1nyWVYMTrfvZk-BqgJZXfOPTLunWCQ3SQoT47f9pEMNCW1r0iri-AUED5kdEcLhDyUtnxyY0X6CUzG3csGer-_DhZF2l3JSdnETOEoLNEMjhvXOn0qe9HGV4p-G3EBqEfvqPozPQAaz-75qZ_G_8Wo_sOk7MTxW7GFUoMZgweH8tdsUcEkwmACuXzic85WuQNR9P30A");'></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Floating Map Controls -->
+                    <div class="absolute bottom-4 right-4 flex gap-2">
+                        <button class="size-10 bg-white dark:bg-[#2d2017] text-text-main-light dark:text-text-main-dark rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-[#3d3027] transition-colors">
+                            <span class="material-symbols-outlined">near_me</span>
+                        </button>
+                        <button class="size-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors">
+                            <span class="material-symbols-outlined">navigation</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Logistics Info Cards (Pickup / Dropoff) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Pickup Card -->
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 border border-[#e6dfdb] dark:border-[#3a2d25] flex flex-col gap-4 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-text-sub-light dark:bg-text-sub-dark opacity-30"></div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded-lg bg-[#f8f7f5] dark:bg-[#3a2d25] text-text-main-light dark:text-text-main-dark">
+                                <span class="material-symbols-outlined">storefront</span>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <span class="text-xs uppercase tracking-wider font-bold text-text-sub-light dark:text-text-sub-dark">Pickup</span>
+                                <h3 class="text-lg font-bold leading-tight">Burger King - Downtown</h3>
+                                <p class="text-sm text-text-sub-light dark:text-text-sub-dark">45 Broad St, New York, NY 10004</p>
+                            </div>
+                        </div>
+                        <div class="mt-auto pt-3 border-t border-dashed border-[#e6dfdb] dark:border-[#3a2d25]">
+                            <p class="text-xs font-medium text-text-sub-light dark:text-text-sub-dark flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">info</span>
+                                Wait at the side counter for pickup.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Dropoff Card -->
+                    <div class="bg-card-light dark:bg-card-dark rounded-xl p-5 border border-[#e6dfdb] dark:border-[#3a2d25] flex flex-col gap-4 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                                <span class="material-symbols-outlined">location_on</span>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <span class="text-xs uppercase tracking-wider font-bold text-primary">Dropoff</span>
+                                <h3 class="text-lg font-bold leading-tight">Sarah J.</h3>
+                                <p class="text-sm text-text-sub-light dark:text-text-sub-dark">1234 Main St, Apt 4B, New York</p>
+                            </div>
+                        </div>
+                        <div class="mt-auto pt-3 border-t border-dashed border-[#e6dfdb] dark:border-[#3a2d25]">
+                            <p class="text-xs font-bold text-primary flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">lock</span>
+                                Gate Code: 4455
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Customer Contact Actions -->
+                <div class="bg-card-light dark:bg-card-dark rounded-xl p-4 border border-[#e6dfdb] dark:border-[#3a2d25] flex flex-wrap items-center justify-between gap-4 shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="size-10 rounded-full bg-cover bg-center" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIWK1c1LYwz-zwbbia8ROvo6Hjd41SqQ9tFvNF2SebwV6UNAFDdX_aMzLru4YerFCEOGR8l0SY-y8krL_frjVUi6dfBBW30WljE4oYMxE0ehZP5vqIgL5JsVnn7bjF7ggodDONbXS9PoJCPXLZOMG-hD-a9jLLW3Vf-h1VGW7nbPchGENeihYeTUysfw9PYS0KKuEqgl6wMkvFS2h9co33XWvzu8VqnxI88fGgALcjyQ--ioJbtkBZOd4SROKqIk17api2FjWgPaI");'></div>
+                        <div>
+                            <p class="font-bold text-base">Contact Customer</p>
+                            <p class="text-xs text-text-sub-light dark:text-text-sub-dark">Sarah J.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="size-10 rounded-full bg-[#f8f7f5] dark:bg-[#3a2d25] flex items-center justify-center text-text-main-light dark:text-text-main-dark hover:bg-[#e6dfdb] dark:hover:bg-[#4a3d35] transition-colors">
+                            <span class="material-symbols-outlined">chat</span>
+                        </button>
+                        <button class="size-10 rounded-full bg-[#f8f7f5] dark:bg-[#3a2d25] flex items-center justify-center text-text-main-light dark:text-text-main-dark hover:bg-[#e6dfdb] dark:hover:bg-[#4a3d35] transition-colors">
+                            <span class="material-symbols-outlined">call</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Primary Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button class="flex-1 py-4 bg-primary hover:bg-primary/90 text-white rounded-xl text-lg font-bold shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 group mark-picked-up-btn">
+                        <span>Confirm Pickup</span>
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                    <button class="flex-1 py-4 bg-green-600 hover:bg-green-700 text-white rounded-xl text-lg font-bold shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2 mark-delivered-btn">
+                        <span>Mark Delivered</span>
+                        <span class="material-symbols-outlined">check_circle</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Right Column: Order Summary -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                <div class="bg-card-light dark:bg-card-dark rounded-xl border border-[#e6dfdb] dark:border-[#3a2d25] shadow-sm sticky top-24">
+                    <div class="p-6 border-b border-[#e6dfdb] dark:border-[#3a2d25]">
+                        <h2 class="text-xl font-bold">Order Summary</h2>
+                        <p class="text-sm text-text-sub-light dark:text-text-sub-dark mt-1">3 Items • 2.4 km</p>
+                    </div>
+                    <!-- Items List -->
+                    <div class="p-6 flex flex-col gap-6">
+                        <!-- Item 1 -->
+                        <div class="flex gap-4">
+                            <div class="size-16 rounded-lg bg-[#f8f7f5] dark:bg-[#3a2d25] bg-center bg-cover flex-shrink-0" data-alt="Burger meal" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfHgdIEY5s_DAAryWPHuJJE95zFDMIP3UaBZudRIxU5eHbgZsMMlKLc_z8ab7cYpIj3CR5gRKdW-lnNXNUuV0RgSrFh1TQoASy7weuNHeHK05mdk8Chk026WC8Ttg4QPhR-pDicjOnpgmUBr9iQjm5TFkD89Uydf6jc0yhwpV9y7E-Asfmq7QEW7YxG6WgQPupSdWG-uRYoigC74r3waM-YfmEq_7GCYWKD-0Jp3VdIPUD0Wjgd_jfFaxrtOKxp4ioSUKFdcG3-AM");'></div>
+                            <div class="flex flex-col flex-1">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-sm">Whopper Meal</h3>
+                                    <span class="text-sm font-medium">$12.50</span>
+                                </div>
+                                <p class="text-xs text-text-sub-light dark:text-text-sub-dark mt-1">Large Fries, No Mayo</p>
+                                <div class="mt-2 text-xs font-bold px-2 py-1 bg-[#f8f7f5] dark:bg-[#3a2d25] w-fit rounded text-text-main-light dark:text-text-main-dark">x2</div>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="flex gap-4">
+                            <div class="size-16 rounded-lg bg-[#f8f7f5] dark:bg-[#3a2d25] bg-center bg-cover flex-shrink-0" data-alt="Onion rings" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByWXPEUbM1_bhnhRgU047tPNxQfeKIx0nR5POSXPiPv73uuBXc0lHTiClMCPMvugxAGzJqbKToWI0humqGIhReUvqbRivtCFld9J1ZKE0NOjXs0H2s9VeAaK-JFKjBtYGR6lzSlOUaVyvHeC_W69d_Cs25UN2hw7HNU-CrkX4Z7XDLiIWE5Qx4v7kaF2e9urXx2ygAhEISd1CCJKTgjhtcfolaUAPr6wuXXgZR235tgaCY7gY_Udt3AyrsLYqlLMpGVC84247zrBc");'></div>
+                            <div class="flex flex-col flex-1">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-sm">Onion Rings</h3>
+                                    <span class="text-sm font-medium">$4.50</span>
+                                </div>
+                                <div class="mt-2 text-xs font-bold px-2 py-1 bg-[#f8f7f5] dark:bg-[#3a2d25] w-fit rounded text-text-main-light dark:text-text-main-dark">x1</div>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="flex gap-4">
+                            <div class="size-16 rounded-lg bg-[#f8f7f5] dark:bg-[#3a2d25] bg-center bg-cover flex-shrink-0" data-alt="Soda drink" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtNNIn1_4O1sBzVbvClzgg0bz2LhltlRCgBAXEwPPH3g410goJTuRfFyS4f2OUgelYrt8UaLV7wJhjLkbQF4jmx_l6qZ0o3yfeATlrQhsNkwfd1sI6rLb1zVqkCCk0plWkanBlfdBtHR_m79pbMTk2w2RnnpZhqwhtn5CcT42RfULlpw86HHRcRokfp8-DovJHXXGhYzwjv2cz01Ha9JJCWMC17JO_B3rhB71-ZJnOe75teZapvKgLPSg5H-OR4kpU-XZy8sTWcs0");'></div>
+                            <div class="flex flex-col flex-1">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="font-bold text-sm">Coca Cola</h3>
+                                    <span class="text-sm font-medium">$2.50</span>
+                                </div>
+                                <p class="text-xs text-text-sub-light dark:text-text-sub-dark mt-1">Large, Ice</p>
+                                <div class="mt-2 text-xs font-bold px-2 py-1 bg-[#f8f7f5] dark:bg-[#3a2d25] w-fit rounded text-text-main-light dark:text-text-main-dark">x1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pricing Summary -->
+                    <div class="bg-[#f8f7f5] dark:bg-[#251a14] p-6 rounded-b-xl flex flex-col gap-3">
+                        <div class="flex justify-between text-sm text-text-sub-light dark:text-text-sub-dark">
+                            <span>Subtotal</span>
+                            <span>$32.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-text-sub-light dark:text-text-sub-dark">
+                            <span>Tax &amp; Fees</span>
+                            <span>$4.50</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-primary font-medium">
+                            <span>Driver Tip</span>
+                            <span>$5.00</span>
+                        </div>
+                        <div class="h-px bg-[#e6dfdb] dark:bg-[#3a2d25] my-1"></div>
+                        <div class="flex justify-between text-lg font-black text-text-main-light dark:text-text-main-dark">
+                            <span>Total</span>
+                            <span>$41.50</span>
+                        </div>
+                        <div class="mt-4 p-3 bg-white dark:bg-[#3a2d25] rounded-lg border border-dashed border-[#e6dfdb] dark:border-[#4a3d35]">
+                            <p class="text-xs text-text-sub-light dark:text-text-sub-dark text-center">
+                                Customer has paid. Do not collect cash.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="/js/delivery/order-details-controller.js"></script>
+</body></html>

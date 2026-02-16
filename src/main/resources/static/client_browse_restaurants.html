@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Foody - Find Your Meal</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f26c0d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2c241b",
+                        "border-light": "#e6dfdb",
+                        "border-dark": "#403630",
+                        "text-main": "#181411",
+                        "text-secondary": "#8a7260",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur border-b border-border-light dark:border-border-dark px-4 lg:px-10 py-3 transition-colors">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 text-text-main dark:text-white cursor-pointer group">
+            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">lunch_dining</span>
+            </div>
+            <h2 class="text-xl font-bold leading-tight tracking-tight">Foody</h2>
+        </div>
+        <!-- Desktop Nav Links -->
+        <nav class="hidden md:flex flex-1 justify-center gap-8">
+            <a class="text-text-main dark:text-gray-200 text-sm font-bold hover:text-primary transition-colors" href="/roles">Home</a>
+            <a class="text-text-secondary dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="/pastOrders">Orders</a>
+            <a class="text-text-secondary dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors" href="/pastOrders">Favorites</a>
+        </nav>
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+            <button class="relative flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-text-main dark:text-white transition-colors">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span class="absolute top-2 right-2 size-2 rounded-full bg-primary ring-2 ring-white dark:ring-surface-dark"></span>
+            </button>
+            <a href="/login" class="hidden sm:flex items-center justify-center h-10 px-6 rounded-xl bg-surface-light dark:bg-white/10 border border-border-light dark:border-transparent text-text-main dark:text-white text-sm font-bold hover:bg-gray-100 dark:hover:bg-white/20 transition-colors">
+                Sign In
+            </a>
+            <div class="size-10 rounded-full bg-gray-200 bg-center bg-cover border-2 border-white dark:border-gray-700 shadow-sm" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlVTlEFAyfkrP8YePrUl091qjjoMoZZ1ASJyeNe0RaMIp9V5a-Ur-gor2n0jUScV3q9EhXdkRWMO775zar0Cvm8jfiJsYCggdQy4JtteNg7lerhtg77yjqBl4PVUIn71HoBWaUe9VO0daFZPDYbtqhKzC7aBHsUFzvlFQHbLtvxTvL0Y2EwW42yubuw3rhOkuRcEBA95B7-Z3b1S11XDd95qenPDKh7DC0YI9X4m4fKL7TxK1nmiEl_TY16GMBZiXjTH0AqgRGpSQ");'>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"></div>
+    <div class="w-full h-[400px] md:h-[480px] bg-cover bg-center" data-alt="Top down view of a table full of delicious various food dishes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBP42LsyMQ6qj3LdaAjCcaKEN3XocS5jSgx4_llRtcgmyqTAdZjUovZzhz7lX05BE4JeJShswnS0u2PR_M1C3cBpUEBnzZ3KBdKZ6cqrB0QU4dlO2sv4M9gMb_WlvYMtFmyBGTQQ1x2Z5ZBkuKcqLEJSKkDb6KoRY8Ig5K_zhM05A2HSpd0f9QVvul16NJSMZQo3KaPitLsoERLm4naYeTzNrVcA9zrOAv4J9Of8vQIzFg_6UelhCPdoor3KARpUGperQa4NN3Mq0k");'>
+    </div>
+    <div class="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center">
+        <h1 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4 drop-shadow-sm">
+            Hungry? Let's find you a meal.
+        </h1>
+        <h2 class="text-gray-200 text-lg md:text-xl font-medium mb-8 max-w-2xl drop-shadow-sm">
+            Order delivery from the best restaurants near you
+        </h2>
+        <!-- Search Bar -->
+        <div class="w-full max-w-[600px] bg-white dark:bg-surface-dark rounded-xl p-2 shadow-xl flex items-center gap-2">
+            <div class="hidden sm:flex items-center justify-center size-10 text-primary">
+                <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <input class="flex-1 bg-transparent border-none focus:ring-0 text-text-main dark:text-white placeholder-text-secondary dark:placeholder-gray-500 text-base" placeholder="Enter your delivery address" type="text"/>
+            <button id="find-food-btn" class="bg-primary hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-lg transition-colors flex items-center gap-2">
+                <span class="hidden sm:inline">Find Food</span>
+                <span class="sm:hidden material-symbols-outlined">search</span>
+            </button>
+        </div>
+    </div>
+</section>
+<!-- Main Content Layout -->
+<main class="flex-1 max-w-[1440px] mx-auto w-full px-4 lg:px-10 py-8 lg:py-12">
+    <!-- Categories Rail (Horizontal Scroll on Mobile) -->
+    <section class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-text-main dark:text-white">Browse by Category</h2>
+            <div class="flex gap-2">
+                <button class="size-8 rounded-full border border-border-light dark:border-border-dark flex items-center justify-center hover:bg-gray-50 dark:hover:bg-white/5 text-text-main dark:text-white">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="size-8 rounded-full border border-border-light dark:border-border-dark flex items-center justify-center hover:bg-gray-50 dark:hover:bg-white/5 text-text-main dark:text-white">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+        <div id="category-rail" class="flex gap-6 overflow-x-auto hide-scrollbar pb-4 snap-x">
+            <!-- Category Item 1 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Juicy cheeseburger close up" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBRpL7iUl8jSl50ezKx_a5ANQE24OqO_VH1VS8JnTh0zlqopPOhJaMh0trSP-3Wrj9Ud6Es1t752UrHj4_ovyqwOTgV6QPTvIUIkMCVyF3oE9lZ5ayujkXFYzvS21gDsiXr7Lryif4N1YETKu5pDDV3DV5zEMhcT0JVZDWx4Knon3Eyo1sH7_WowkxXY7gVuMR1xgIMN3EwXWl5Jjiipw48EivoS0Ag2rf2tgISGMA3djHu3C3gXUyctNyBj_TqiAQtoS6JrB-mbH8");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Burger</span>
+            </a>
+            <!-- Category Item 2 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Slice of pepperoni pizza" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzFU1yzUusJjExQ87B4UFW1YtBF2yLPt6NFhczmDaLOokvOhcUfhgoviR9A-238_ybA6BjrTFuA5jT-ANk4r-T_y3qycTGh7e6CV5oZxTDkjAaNtqSwGA5gtmUOJce8rp2fIqGhAnzwYsTUQ3iZYXTzmLxq-jQWaGkW_cgskdHo4tGqSvWh4G-0kdU-6veRPwjLAiODNKLdP5zh1yaCaTlPZQrlXWAXvGUZApl6tFD9CzZCVZIkMC2DmGKU3CDYG2k0D6TNO6a_8I");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Pizza</span>
+            </a>
+            <!-- Category Item 3 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Bowl of asian noodle soup" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAt9bCNvfpoxAYwnHhlVxaHE4y6a8GSi5Z_XwHBmpDfbli0POA_HOEMELItCvaNJHFM5taagfB6LsgGUcwFBGzEMmLtJ79X7y31O-PiuZyJmDe-Xiood4DrdfhX0mgqtXjNoz9TydmRVGaboTjR3YF4KuYvO7VkPFL01fgkt-L9KZrFfcH9bDH0NMsu1NWciImGbWoaIypcQ6HJcDxZ7NWWMLuxMixpZ57eiIlI7Z6VjWXpmzN4poFz3PG3XGL-r8Ab758ppM2qaKk");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Asian</span>
+            </a>
+            <!-- Category Item 4 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Fresh green salad bowl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXHKvKgVKpzkaBDZQ81mQ1x_meY81HAINtCd1uSjJEwNwwuetwXOa4wCktc0VMHLGDAympYFj4O-T_8fd0tn5RnO_kELacZxIebseUTxiG7y8y1bowVeidOLmFtS4yJ2VrVAlvVO7uZvOJqi4sGB-Hxiy67S33lC116kmKLbkwq4LCiS3MOKV2lsCTpV3UM1GKmsEfYiDBsfgWrYCo9HybKNmAd0x7Vh6lY7r8lJIMsp_LI8F4XSGpvzakk7i64I_LZ-lOyDSUp9c");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Healthy</span>
+            </a>
+            <!-- Category Item 5 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Plate of tacos" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDSSkpRd8b0525i35pEjq-BwVvhON96JH-T4taefCf7U73SxZ5iwaVNfEhPMv0rPRn0WbTIM9S-7DCSzGSrK2NaG3o7hMJpzSY3OQQuGv8GnltoVA6R0jQY4ZMYjzdc8cc3waaNVOHGWCEhNISLRDfDNSC1FoLBjXjtONRR9B5ojEJxaPVLBR0SjkEKGuI7OpZl0U8hIx50dZC68B3bkkhnp6BuZfoVcUaeczIgSb2sotb6bZHCNSABfClNkJO4vRlt1lYD92pQ4Ak");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Mexican</span>
+            </a>
+            <!-- Category Item 6 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Chocolate cake slice" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBHEQDwmLIKjJEbU95Mj44JNsCPo0sKotwk85TDfsSpDSDq2KkVqjtfgi--HvidV8nkWU6VkIEh-zTR8zCrScC2Mq4yTX-V6IYk5ftooqK7mgmvrd-FodXzac3tWRsfKxIj_UyY40I0RiHiL8F_Ve27IUXuIX0D9D6TvnxlljrPfZet8OEt_6V-4XxejlAKMot6OHgypk9QgWA7l46bea_WnNq2vwvWQOxiReD994vdILMpeoVhdexvSeVJfMPe6stbXQJ2NL8LBO4");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Dessert</span>
+            </a>
+            <!-- Category Item 7 -->
+            <a class="group flex flex-col items-center gap-3 min-w-[100px] snap-start cursor-pointer" href="/restaurants">
+                <div class="size-24 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all ring-4 ring-transparent group-hover:ring-primary/20">
+                    <div class="w-full h-full bg-cover bg-center" data-alt="Sushi platter" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALQBhET-OK1m5Pv1Rh55mBBaAvfzKKpyEeZuGb3wjw3lLrU0QC_hYYO9Itanrob-JVnergIP5idJzkLfjw300giak3oh1lscdiTulo9W5O9iNN4JlsAr1QlL2KQGViemnfcxKJbEy8bWXuATHoKVHdirKwCmdbw9Xu3bMQDr6cj063gESavxIpJhvFAU_f3E3S6U8SJW2UD3NSEhcmhsxO3MxYnCbK3yk23d0fNxfOMRtZxbNTHr-och9IeDWWZkswVd6WY1ZPsBM");'></div>
+                </div>
+                <span class="font-bold text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Sushi</span>
+            </a>
+        </div>
+    </section>
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar Filters -->
+        <aside class="w-full lg:w-64 flex-none space-y-8">
+            <!-- Mobile Filter Toggle (Visible only on small screens) -->
+            <div class="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark">
+                <span class="font-bold text-lg dark:text-white">Filters</span>
+                <button class="text-primary font-bold">Show</button>
+            </div>
+            <div class="hidden lg:block space-y-8">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-text-main dark:text-white">Filters</h3>
+                    <button class="text-sm font-medium text-text-secondary hover:text-primary dark:text-gray-400">Reset</button>
+                </div>
+                <!-- Sort By -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-text-main dark:text-gray-200">Sort By</h4>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input checked="" class="w-5 h-5 text-primary border-gray-300 focus:ring-primary" name="sort" type="radio"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Recommended</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input class="w-5 h-5 text-primary border-gray-300 focus:ring-primary" name="sort" type="radio"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Top Rated</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input class="w-5 h-5 text-primary border-gray-300 focus:ring-primary" name="sort" type="radio"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Fastest Delivery</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Price Range -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-text-main dark:text-gray-200">Price Range</h4>
+                    <div class="flex gap-2">
+                        <button class="flex-1 py-2 rounded-full bg-primary text-white text-sm font-bold shadow-sm">
+                            $
+                        </button>
+                        <button class="flex-1 py-2 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-secondary dark:text-gray-400 text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                            $$
+                        </button>
+                        <button class="flex-1 py-2 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-secondary dark:text-gray-400 text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                            $$$
+                        </button>
+                        <button class="flex-1 py-2 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-secondary dark:text-gray-400 text-sm font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                            $$$$
+                        </button>
+                    </div>
+                </div>
+                <!-- Dietary -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-text-main dark:text-gray-200">Dietary</h4>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input class="rounded text-primary border-gray-300 focus:ring-primary w-5 h-5" type="checkbox"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Vegetarian</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input class="rounded text-primary border-gray-300 focus:ring-primary w-5 h-5" type="checkbox"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Vegan</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input class="rounded text-primary border-gray-300 focus:ring-primary w-5 h-5" type="checkbox"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Gluten-free</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input class="rounded text-primary border-gray-300 focus:ring-primary w-5 h-5" type="checkbox"/>
+                            <span class="text-sm text-text-secondary group-hover:text-text-main dark:text-gray-400 dark:group-hover:text-white">Halal</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Restaurant Grid -->
+        <div class="flex-1">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-text-main dark:text-white">Restaurants Nearby</h2>
+                <span id="restaurant-count" class="text-sm font-medium text-text-secondary dark:text-gray-400">—</span>
+            </div>
+            <div id="restaurant-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Cards loaded by browse-restaurants-controller.js from GET /api/restaurants -->
+                <div class="col-span-full text-center text-text-secondary dark:text-gray-400 py-12">Loading…</div>
+            </div>
+            <!-- Load More Button -->
+            <div class="flex justify-center mt-12">
+                <button class="h-12 px-8 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-surface-dark text-text-main dark:text-white font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                    Load More Restaurants
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="bg-white dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-8 px-4 lg:px-10 mt-auto">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2 text-text-main dark:text-white">
+            <div class="size-6 bg-primary rounded-md flex items-center justify-center text-white">
+                <span class="material-symbols-outlined text-sm">lunch_dining</span>
+            </div>
+            <span class="font-bold">Foody</span>
+        </div>
+        <div class="flex gap-6">
+            <span class="text-sm text-text-secondary dark:text-gray-400">About</span>
+            <span class="text-sm text-text-secondary dark:text-gray-400">Careers</span>
+            <span class="text-sm text-text-secondary dark:text-gray-400">Privacy Policy</span>
+            <span class="text-sm text-text-secondary dark:text-gray-400">Terms of Service</span>
+        </div>
+        <p class="text-sm text-text-secondary dark:text-gray-500">
+            © 2023 Foody Inc.
+        </p>
+    </div>
+</footer>
+<script src="/js/client/browse-restaurants-controller.js"></script>
+</body></html>

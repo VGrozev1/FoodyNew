@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Foody – Sign up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#f26c0d", "background-light": "#f8f7f5", "background-dark": "#221710" },
+                    fontFamily: { "display": ["Plus Jakarta Sans", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col text-[#181411] dark:text-white overflow-x-hidden">
+<div class="flex min-h-screen w-full">
+    <div class="hidden lg:flex lg:w-1/2 relative bg-background-dark overflow-hidden">
+        <img alt="Food" class="absolute inset-0 w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-KjXc__7OWwXZSPDB8aR975XJ6OILNmC3ixOzyJzqte3rbDL7-Xx_fxDIzsnJc3h_g4lssr5jB-J--FxQk_e7CS4vW9KVCjNpCY0EZpb64uIdheTHVKGbw-hDl7Qqn6nqzcPNwLvEH4Tf_7scHcTcMRMm_QYLUgPUbA0EnHh9duwveTxniahjv-IBrvJ4riFYwVb9ELJKGfcmgforu7bzrjjTm9cqNgE9pWyxWLotlOYe4ECc0T6EPagFZ2ECZCZbfuHLgo16E-4"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="relative z-10 flex flex-col justify-end p-16 w-full">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="p-2 bg-primary rounded-lg text-white"><span class="material-symbols-outlined text-3xl">restaurant_menu</span></div>
+                <h1 class="text-4xl font-extrabold text-white tracking-tight">Foody</h1>
+            </div>
+            <p class="text-white/90 text-xl font-medium max-w-md leading-relaxed">Join as a customer, restaurant partner, or courier. One account type per sign-up.</p>
+        </div>
+    </div>
+    <div class="flex-1 flex flex-col justify-center items-center px-4 py-12 sm:px-6 lg:flex-none lg:w-1/2 xl:px-24 bg-white dark:bg-background-dark transition-colors duration-300">
+        <div class="w-full max-w-[480px] flex flex-col gap-8">
+            <div class="lg:hidden flex justify-center mb-4">
+                <div class="flex items-center gap-2 text-[#181411] dark:text-white">
+                    <div class="size-8 text-primary"><svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill-rule="evenodd"></path></svg></div>
+                    <h2 class="text-2xl font-bold tracking-tight">Foody</h2>
+                </div>
+            </div>
+            <div class="text-center lg:text-left space-y-2">
+                <h1 class="text-3xl font-bold tracking-tight text-[#181411] dark:text-white">Create your account</h1>
+                <p class="text-[#8a7260] dark:text-gray-400" id="signupSubline">Sign up as a customer to order food.</p>
+            </div>
+            <div class="w-full">
+                <div class="grid grid-cols-3 border-b border-[#e6dfdb] dark:border-gray-700">
+                    <a href="/signup" id="tab-customer" class="signup-tab group flex flex-col items-center justify-center border-b-[3px] pb-3 pt-2 transition-all">
+                        <span class="text-sm font-bold leading-normal tracking-[0.015em]">Customer</span>
+                    </a>
+                    <a href="/signup?role=restaurant" id="tab-restaurant" class="signup-tab group flex flex-col items-center justify-center border-b-[3px] border-transparent pb-3 pt-2 transition-all">
+                        <span class="text-sm font-bold leading-normal tracking-[0.015em]">Restaurant</span>
+                    </a>
+                    <a href="/signup?role=delivery" id="tab-delivery" class="signup-tab group flex flex-col items-center justify-center border-b-[3px] border-transparent pb-3 pt-2 transition-all">
+                        <span class="text-sm font-bold leading-normal tracking-[0.015em]">Courier</span>
+                    </a>
+                </div>
+            </div>
+            <form id="signupForm" class="flex flex-col gap-5">
+                <!-- Customer panel -->
+                <div id="panel-customer" class="signup-panel space-y-5 hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="flex flex-col gap-2">
+                            <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">First Name</span>
+                            <input name="firstName" class="form-input rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base" placeholder="Alex" type="text" required/>
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">Last Name</span>
+                            <input name="lastName" class="form-input rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base" placeholder="Johnson" type="text" required/>
+                        </label>
+                    </div>
+                    <label class="flex flex-col gap-2">
+                        <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">Phone Number</span>
+                        <input name="phone" class="form-input rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base" placeholder="+1 (555) 000-0000" type="tel" required/>
+                    </label>
+                </div>
+                <!-- Restaurant panel -->
+                <div id="panel-restaurant" class="signup-panel space-y-5 hidden">
+                    <label class="flex flex-col gap-2">
+                        <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">Restaurant Name</span>
+                        <input name="restaurantName" class="form-input rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 text-base" placeholder="e.g. The Burger Joint" type="text"/>
+                    </label>
+                </div>
+                <!-- Delivery panel: no extra fields (vehicleType sent as default) -->
+                <div id="panel-delivery" class="signup-panel hidden">
+                    <p class="text-[#8a7260] dark:text-gray-400 text-sm">Create your courier account with email and password.</p>
+                </div>
+                <!-- Common: Email + Password (all roles) -->
+                <label class="flex flex-col gap-2">
+                    <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">Email Address</span>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#8a7260] pointer-events-none text-xl">mail</span>
+                        <input id="signupEmail" name="email" class="form-input flex w-full rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-14 pl-12 pr-4 text-base" placeholder="name@example.com" type="email" required/>
+                    </div>
+                </label>
+                <label class="flex flex-col gap-2">
+                    <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">Password</span>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#8a7260] pointer-events-none text-xl">lock</span>
+                        <input id="signupPassword" name="password" class="form-input flex w-full rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-14 pl-12 pr-12 text-base" placeholder="••••••••" type="password" required/>
+                    </div>
+                </label>
+                <label class="flex flex-col gap-2">
+                    <span class="text-[#181411] dark:text-gray-200 text-sm font-bold leading-normal">Confirm Password</span>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#8a7260] pointer-events-none text-xl">lock</span>
+                        <input id="signupPasswordConfirm" name="passwordConfirm" class="form-input flex w-full rounded-xl text-[#181411] dark:text-white placeholder:text-[#8a7260] bg-white dark:bg-[#2f251f] border border-[#e6dfdb] dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary h-14 pl-12 pr-4 text-base" placeholder="••••••••" type="password" required/>
+                    </div>
+                </label>
+                <button id="signupButton" type="submit" class="flex w-full cursor-pointer items-center justify-center rounded-xl h-12 bg-primary hover:bg-primary/90 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all shadow-lg shadow-primary/20 mt-2">
+                    <span class="truncate" id="signupButtonText">Create account</span>
+                </button>
+            </form>
+            <div class="flex justify-center items-center gap-2 mt-4">
+                <p class="text-[#8a7260] dark:text-gray-400 text-sm font-medium">Already have an account?</p>
+                <a class="text-primary text-sm font-bold hover:underline" href="/login">Log in</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/auth/signup-controller.js"></script>
+</body>
+</html>

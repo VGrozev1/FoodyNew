@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Foody – Checkout</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#f26c0d", "background-light": "#f8f7f5", "background-dark": "#221710" } } } };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet"/>
+    <style>body { font-family: "Plus Jakarta Sans", sans-serif; }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+<header class="w-full bg-white dark:bg-[#2c241b] border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+    <div class="max-w-3xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">shopping_cart</span>
+            <span class="font-bold text-lg text-[#181411] dark:text-white">Checkout</span>
+        </div>
+        <a href="/restaurants" class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary">Continue browsing</a>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 py-8">
+    <div id="checkout-empty" class="hidden text-center py-12">
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Your cart is empty.</p>
+        <a href="/restaurants" class="inline-flex items-center justify-center rounded-xl px-6 py-3 bg-primary text-white font-bold hover:bg-primary/90">Browse restaurants</a>
+    </div>
+    <div id="checkout-content" class="space-y-6">
+        <div id="cart-summary" class="rounded-xl bg-white dark:bg-[#2c241b] border border-gray-200 dark:border-gray-700 p-6">
+            <h2 id="restaurant-name" class="text-lg font-bold text-[#181411] dark:text-white mb-4"></h2>
+            <ul id="cart-items" class="space-y-3"></ul>
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-between text-sm">
+                <span class="text-gray-600 dark:text-gray-400">Delivery fee</span>
+                <span id="delivery-fee" class="font-semibold">$2.99</span>
+            </div>
+            <div class="mt-2 flex justify-between items-center">
+                <span class="font-bold text-[#181411] dark:text-white">Total</span>
+                <span id="cart-total" class="text-2xl font-black text-primary">$0.00</span>
+            </div>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-[#2c241b] border border-gray-200 dark:border-gray-700 p-6">
+            <label for="delivery-address" class="block text-sm font-bold text-[#181411] dark:text-white mb-2">Delivery address <span class="text-red-500">*</span></label>
+            <textarea id="delivery-address" rows="3" placeholder="Street, number, city, postal code" class="w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-[#1a1614] text-[#181411] dark:text-white px-4 py-3 text-sm placeholder-gray-400 focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
+            <p id="address-error" class="mt-1 text-xs text-red-500 hidden">Please enter your delivery address.</p>
+        </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Place order as demo client. <a href="/login" class="text-primary hover:underline">Log in</a> to use your account.</p>
+        <button id="place-order-btn" type="button" class="w-full rounded-xl py-4 bg-primary text-white font-bold text-lg hover:bg-primary/90 transition-colors">
+            Place order
+        </button>
+    </div>
+</main>
+<script src="/js/client/checkout-controller.js"></script>
+</body>
+</html>

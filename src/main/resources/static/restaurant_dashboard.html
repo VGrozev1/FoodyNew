@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Foody Partner Dashboard</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f26c0d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d1d5db;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#181411] dark:text-white font-display overflow-hidden">
+<div class="flex h-screen w-full">
+    <!-- Side Navigation -->
+    <aside class="hidden lg:flex w-[280px] flex-col border-r border-[#f5f2f0] dark:border-zinc-800 bg-white dark:bg-zinc-900 h-full flex-shrink-0">
+        <div class="p-6 flex flex-col h-full justify-between">
+            <div class="flex flex-col gap-8">
+                <!-- Brand / Profile -->
+                <div class="flex items-center gap-3">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Restaurant owner profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA977t-e7OAUgpkSCutdlkfPG9IF9p8t4NAyJRa_iF0BudYd4_RDzbLuYkfmo5Xn6UeINX8RZh2RemNpRP-WSdM2D5_ToT4Hm508V0HQioSquwAyioL1KyXezrYWM3LQX4FJ5Taul6rElU5f_WgJC5CaPh-HujVI1FtkMGRa4zZvmPhMk9g1fx4k1ySy7oCumY1g-fDG_upepMreM2OY2LyD4I3kQ-ZORL_-JTrzZShzlMnZFgYtLebWYGb7se-gOa1f57atK-ZufQ");'></div>
+                    <div>
+                        <h1 class="text-[#181411] dark:text-white text-base font-bold leading-tight">Foody Partner</h1>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Restaurateur Portal</p>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="flex flex-col gap-2">
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary/10 text-primary" href="/myRestaurant">
+                        <span class="material-symbols-outlined filled">dashboard</span>
+                        <span class="text-sm font-bold">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors" href="/myMenu">
+                        <span class="material-symbols-outlined">restaurant_menu</span>
+                        <span class="text-sm font-medium">Menu Management</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors" href="/all_orders">
+                        <span class="material-symbols-outlined">history</span>
+                        <span class="text-sm font-medium">Order History</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors" href="/myRestaurant">
+                        <span class="material-symbols-outlined">payments</span>
+                        <span class="text-sm font-medium">Financials</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors" href="/myRestaurant">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span class="text-sm font-medium">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            <!-- Bottom Action -->
+            <div class="p-4 rounded-2xl bg-gray-50 dark:bg-zinc-800/50">
+                <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Support</p>
+                <button class="flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-lg">help</span>
+                    Help Center
+                </button>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col h-full min-w-0 overflow-hidden relative">
+        <!-- Top Header -->
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-[#f5f2f0] dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 lg:px-10 py-4 shrink-0 z-20">
+            <div class="flex items-center gap-4 text-[#181411] dark:text-white">
+                <div class="lg:hidden p-2 -ml-2 text-gray-500">
+                    <span class="material-symbols-outlined">menu</span>
+                </div>
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-4xl">lunch_dining</span>
+                </div>
+                <h2 id="restaurant-name" class="text-[#181411] dark:text-white text-xl font-bold leading-tight tracking-tight">Burger &amp; Co.</h2>
+                <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                        verified
+                    </span>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-8">
+                <!-- Status Toggle -->
+                <div class="flex items-center gap-3 bg-gray-100 dark:bg-zinc-800 p-1 rounded-xl">
+                    <button class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-bold shadow-sm transition-all flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                        Open
+                    </button>
+                    <button class="px-3 py-2 text-gray-500 dark:text-gray-400 text-sm font-medium hover:text-gray-900 dark:hover:text-white transition-colors">
+                        Busy
+                    </button>
+                </div>
+                <div class="w-px h-8 bg-gray-200 dark:bg-zinc-700 hidden sm:block"></div>
+                <!-- Notifications -->
+                <button class="relative p-2 text-gray-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 border-2 border-white dark:border-zinc-900 rounded-full"></span>
+                </button>
+            </div>
+        </header>
+        <!-- Scrollable Dashboard Content -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-10 scroll-smooth">
+            <div class="max-w-[1400px] mx-auto flex flex-col gap-8">
+                <!-- Page Heading -->
+                <div class="flex flex-wrap justify-between items-end gap-4">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-[#181411] dark:text-white text-3xl font-black leading-tight tracking-tight">Dashboard</h1>
+                        <p class="text-[#8a7260] dark:text-gray-400 text-base font-normal">Real-time overview of your restaurant's performance.</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-zinc-900 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 shadow-sm">
+                        <span class="material-symbols-outlined text-base">calendar_today</span>
+                        <span>Today, Oct 24</span>
+                    </div>
+                </div>
+                <!-- Stats Grid -->
+                <div id="dashboard-stats" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Stat 1 -->
+                    <div class="flex flex-col gap-3 rounded-xl p-5 bg-white dark:bg-zinc-900 border border-[#e6dfdb] dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Today's Revenue</p>
+                            <div class="bg-green-100 text-green-700 p-1 rounded-md">
+                                <span class="material-symbols-outlined text-lg">trending_up</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181411] dark:text-white text-3xl font-bold leading-tight tracking-tight">$1,240.50</p>
+                            <p class="text-[#07880e] text-sm font-medium mt-1">+12% <span class="text-gray-400 dark:text-gray-500 font-normal">vs yesterday</span></p>
+                        </div>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="flex flex-col gap-3 rounded-xl p-5 bg-white dark:bg-zinc-900 border border-[#e6dfdb] dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">New Orders</p>
+                            <div class="bg-orange-100 text-orange-700 p-1 rounded-md">
+                                <span class="material-symbols-outlined text-lg">notifications_active</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181411] dark:text-white text-3xl font-bold leading-tight tracking-tight">8</p>
+                            <p class="text-[#07880e] text-sm font-medium mt-1">+2 <span class="text-gray-400 dark:text-gray-500 font-normal">since last hour</span></p>
+                        </div>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="flex flex-col gap-3 rounded-xl p-5 bg-white dark:bg-zinc-900 border border-[#e6dfdb] dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Pending Delivery</p>
+                            <div class="bg-blue-100 text-blue-700 p-1 rounded-md">
+                                <span class="material-symbols-outlined text-lg">local_shipping</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181411] dark:text-white text-3xl font-bold leading-tight tracking-tight">42</p>
+                            <p class="text-gray-500 text-sm font-medium mt-1">~25m avg time</p>
+                        </div>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="flex flex-col gap-3 rounded-xl p-5 bg-white dark:bg-zinc-900 border border-[#e6dfdb] dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold">Avg Rating</p>
+                            <div class="bg-yellow-100 text-yellow-700 p-1 rounded-md">
+                                <span class="material-symbols-outlined text-lg">star</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181411] dark:text-white text-3xl font-bold leading-tight tracking-tight">4.8</p>
+                            <p class="text-[#07880e] text-sm font-medium mt-1">+0.1 <span class="text-gray-400 dark:text-gray-500 font-normal">this week</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Grid Layout -->
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8 h-full">
+                    <!-- Left Column: Order Management (2/3 width) -->
+                    <div class="xl:col-span-2 flex flex-col gap-6">
+                        <!-- Header & Filters -->
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-[#181411] dark:text-white text-xl font-bold flex items-center gap-2">
+                                Active Orders
+                                <span class="bg-primary text-white text-xs px-2 py-0.5 rounded-full">8</span>
+                            </h2>
+                            <div class="flex bg-white dark:bg-zinc-900 rounded-lg p-1 border border-gray-200 dark:border-zinc-800 shadow-sm">
+                                <button class="px-3 py-1.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white text-xs font-bold rounded shadow-sm">All</button>
+                                <button class="px-3 py-1.5 text-gray-500 hover:bg-gray-50 dark:hover:bg-zinc-800 text-xs font-medium rounded transition-colors">New</button>
+                                <button class="px-3 py-1.5 text-gray-500 hover:bg-gray-50 dark:hover:bg-zinc-800 text-xs font-medium rounded transition-colors">Preparing</button>
+                                <button class="px-3 py-1.5 text-gray-500 hover:bg-gray-50 dark:hover:bg-zinc-800 text-xs font-medium rounded transition-colors">Ready</button>
+                            </div>
+                        </div>
+                        <!-- Kanban/List Container -->
+                        <div class="flex flex-col gap-4">
+                            <!-- NEW ORDER (Action Required) -->
+                            <div class="relative group bg-white dark:bg-zinc-900 rounded-xl p-0 border-l-4 border-l-primary shadow-md hover:shadow-lg transition-all border-y border-r border-y-gray-100 border-r-gray-100 dark:border-y-zinc-800 dark:border-r-zinc-800">
+                                <div class="absolute top-4 right-4 animate-pulse">
+                                    <span class="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">New</span>
+                                </div>
+                                <div class="p-5 flex flex-col sm:flex-row gap-6">
+                                    <!-- Time & ID -->
+                                    <div class="flex flex-col gap-1 min-w-[100px]">
+                                        <span class="text-xs font-semibold text-gray-400 uppercase">Order ID</span>
+                                        <span class="text-lg font-bold text-gray-900 dark:text-white">#1294</span>
+                                        <span class="text-xs font-medium text-primary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                                2 min ago
+                                            </span>
+                                    </div>
+                                    <!-- Details -->
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-6" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlDmWOGmS4l_W2njZkggnacHaUhbC6xC-svyu7jqtDIJUNqaKkrHbjezuc-fhHXJZg9pC01ZZ9T4-09OrXJ8U8_sjzJDWyw0kYVAqQgA8cqSxSwwW5VQpME64BPg7pEgBpm4pTukcD5b-Y9ES_Cezaku-vrP__UXlOgNXaW5xPUH8DGtwnSqUO9o9sGlcxIE48NyL9ku306WVnUgWnZXUeSE7CsubadHHN10qnLNGK1u3frCc_YTclhSsipTlg0Rj1MRYCetyBslE");'></div>
+                                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Alex M.</span>
+                                        </div>
+                                        <ul class="space-y-1 mb-3">
+                                            <li class="text-sm text-gray-800 dark:text-gray-200 font-medium">2x Double Cheese Burger <span class="text-gray-400 font-normal ml-1">No onions</span></li>
+                                            <li class="text-sm text-gray-800 dark:text-gray-200 font-medium">1x Large Fries</li>
+                                            <li class="text-sm text-gray-800 dark:text-gray-200 font-medium">1x Coke Zero</li>
+                                        </ul>
+                                        <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-zinc-800">
+                                            <span class="text-base font-bold text-gray-900 dark:text-white">$32.50</span>
+                                            <div class="flex gap-2">
+                                                <button class="px-4 py-2 rounded-lg text-sm font-bold border border-gray-200 dark:border-zinc-700 text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-zinc-800 transition-colors">Decline</button>
+                                                <button class="px-4 py-2 rounded-lg text-sm font-bold bg-primary text-white hover:bg-orange-600 shadow-sm transition-colors">Accept Order</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- PREPARING ORDER -->
+                            <div class="relative bg-white dark:bg-zinc-900 rounded-xl p-5 border border-gray-200 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
+                                <div class="absolute top-4 right-4">
+                                    <span class="bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">Preparing</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-6">
+                                    <div class="flex flex-col gap-1 min-w-[100px]">
+                                        <span class="text-xs font-semibold text-gray-400 uppercase">Order ID</span>
+                                        <span class="text-lg font-bold text-gray-900 dark:text-white">#1293</span>
+                                        <span class="text-xs font-medium text-gray-500 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">timer</span>
+                                                12 min
+                                            </span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-6" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCpJMYvery0GNisfUceKxg72TobHc7ToyCRInkM8sV2pVz3yQR0OjSs6zo_38KWuXXMGzWDqItV1_3VjQzc6iOmS5V6K0YuCaDn4oaZ4sAO8zAiBF0MJiAsf4crEw9JU0Iw3m2UcfbmcubV5ymciAQZWJGSulYVXxq3oQvMeoR4paP2YzrYK06RCtaiDEEws9Yz2_PzEEg2UTmur5SyagZIYLK50WYgU-_lnNCETaFR8cMQEPakXU2pghPQ2t2p92FbX-6h4P_zDZk");'></div>
+                                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Sarah J.</span>
+                                        </div>
+                                        <ul class="space-y-1 mb-3">
+                                            <li class="text-sm text-gray-800 dark:text-gray-200 font-medium">1x Vegan Pizza</li>
+                                            <li class="text-sm text-gray-800 dark:text-gray-200 font-medium">1x Garlic Bread</li>
+                                        </ul>
+                                        <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-zinc-800">
+                                            <span class="text-base font-bold text-gray-900 dark:text-white">$24.00</span>
+                                            <button class="px-4 py-2 rounded-lg text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 shadow-sm transition-colors w-full sm:w-auto">Mark Ready</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- READY ORDER -->
+                            <div class="relative bg-white dark:bg-zinc-900 rounded-xl p-5 border border-gray-200 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow opacity-90">
+                                <div class="absolute top-4 right-4">
+                                    <span class="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">Ready for Pickup</span>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-6">
+                                    <div class="flex flex-col gap-1 min-w-[100px]">
+                                        <span class="text-xs font-semibold text-gray-400 uppercase">Order ID</span>
+                                        <span class="text-lg font-bold text-gray-900 dark:text-white">#1290</span>
+                                        <span class="text-xs font-medium text-gray-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                                                Wait: 5m
+                                            </span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-6" data-alt="Customer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbQM8Z6CSYDuS3mRtQjHLMuyQRzLZZMI1OlLrB0lQ5Mjbib9YhNbEishtZo8xHJ5_BWDiSIDTYGr49AYuttBdkaslDAaUYHAMKolvp4yGfzKfB17zFaEzok9CB-tZOmRhI_mlCbr2Wt35uWpGTWcfL-S6fsnwtR3zXY93fIdLVFuJ1OsxOCsqm46uQPJA_onIr7xJ0jCe2XehkYPhQPVEd5Ra1Zy-TA79UjHTVG-LslfuaRHMKjTPMExrB7CAsstwNQQcvUAaX2eo");'></div>
+                                            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Mike R.</span>
+                                            <span class="text-xs text-gray-400">• UberEats</span>
+                                        </div>
+                                        <ul class="space-y-1 mb-3">
+                                            <li class="text-sm text-gray-500 font-medium line-through">1x Chicken Wrap</li>
+                                            <li class="text-sm text-gray-500 font-medium line-through">1x Soda</li>
+                                        </ul>
+                                        <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-zinc-800">
+                                            <span class="text-base font-bold text-gray-900 dark:text-white">$15.50</span>
+                                            <span class="text-sm font-medium text-green-600 flex items-center gap-1">
+<span class="material-symbols-outlined">electric_moped</span>
+                                                    Driver Arriving
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column: Analytics & Reviews (1/3 width) -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Weekly Revenue Chart -->
+                        <div class="bg-white dark:bg-zinc-900 rounded-xl p-5 border border-[#e6dfdb] dark:border-zinc-800 shadow-sm flex flex-col h-[320px]">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-base font-bold text-[#181411] dark:text-white">Weekly Revenue</h3>
+                                <button class="text-gray-400 hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+                            </div>
+                            <!-- Simulated Chart -->
+                            <div class="flex-1 flex items-end justify-between gap-2 px-2 pb-2">
+                                <!-- Mon -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-primary rounded-t-md h-[40%] transition-all group-hover:bg-primary"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-400 font-medium">M</span>
+                                </div>
+                                <!-- Tue -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-primary rounded-t-md h-[65%] transition-all group-hover:bg-primary"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-400 font-medium">T</span>
+                                </div>
+                                <!-- Wed -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-primary rounded-t-md h-[45%] transition-all group-hover:bg-primary"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-400 font-medium">W</span>
+                                </div>
+                                <!-- Thu -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-primary rounded-t-md h-[80%] transition-all group-hover:bg-primary"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-400 font-medium">T</span>
+                                </div>
+                                <!-- Fri -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-primary rounded-t-md h-[95%] shadow-[0_0_10px_rgba(242,108,13,0.4)] transition-all group-hover:bg-primary"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-900 dark:text-white font-bold">F</span>
+                                </div>
+                                <!-- Sat -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-gray-300 dark:bg-zinc-600 rounded-t-md h-[30%]"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-400 font-medium">S</span>
+                                </div>
+                                <!-- Sun -->
+                                <div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+                                    <div class="w-full bg-orange-100 dark:bg-zinc-700 rounded-t-md relative h-[120px] transition-all group-hover:bg-primary/30">
+                                        <div class="absolute bottom-0 w-full bg-gray-300 dark:bg-zinc-600 rounded-t-md h-[20%]"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-400 font-medium">S</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Recent Reviews -->
+                        <div class="bg-white dark:bg-zinc-900 rounded-xl p-5 border border-[#e6dfdb] dark:border-zinc-800 shadow-sm flex flex-col flex-1">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-base font-bold text-[#181411] dark:text-white">Recent Reviews</h3>
+                                <span class="text-xs font-bold text-primary">View All</span>
+                            </div>
+                            <div class="flex flex-col gap-4 overflow-y-auto max-h-[400px]">
+                                <!-- Review 1 -->
+                                <div class="flex gap-3 pb-3 border-b border-gray-100 dark:border-zinc-800 last:border-0 last:pb-0">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0" data-alt="Reviewer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGGwzl5JG98RClh9eJ2XWuqfkVoadb5aUx-2v1KSjadXYcX9uKLuFjLBMg55NYjLbY37yyhgJYG_-KxRHZPdgVpL7Qj9ACaMcHy_fmh_SGKQWWtoRe8NuYlgFHo1tnRPA_9Qx4tI18WhzuyW7t7CgJdvxNra3lZ7nhLb1e4uSB1XOEIWlJ4_IEG_B_ECo6ZjLmGetjXZoOkuVcFQgdgUz9uwFmnvyE-Cr1Y0MjwmyVFkdWtZC29bn_SWszACAuMSZb0ofpghZr30A");'></div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <span class="text-xs font-bold text-gray-900 dark:text-white">John D.</span>
+                                            <div class="flex text-yellow-400 text-[10px]">
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">"Great food as always! The burger was juicy and fries were crispy. Delivery was super fast too."</p>
+                                    </div>
+                                </div>
+                                <!-- Review 2 -->
+                                <div class="flex gap-3 pb-3 border-b border-gray-100 dark:border-zinc-800 last:border-0 last:pb-0">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0" data-alt="Reviewer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPMsauNwYXzN0ps5HMZjh7S5wqBuULXvlQzOF_kLhhFT19Go6nsJczpnoV0By_BipWP5OM56kF9AAgiW0H3hCo7ERZJi__478mOSRPtYBHnJq4WxgJdkRv4NvNh5yarcWzS-WAQmRvRZe3GfVaTg7Zj6Cx1-cr5QigILtcVBanGIUzw1M7ttn_zbwH0rRED_0W4P2rO0PCMCF3ad4nNj8ytUsTbDL_hbDcM91sgTWDkelqPaLyFYP0VSrwLhBh9StdXlkSBZqZNz0");'></div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <span class="text-xs font-bold text-gray-900 dark:text-white">Emily W.</span>
+                                            <div class="flex text-yellow-400 text-[10px]">
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-gray-300 text-sm">star</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">"Food was okay, but forgot the extra sauce I paid for."</p>
+                                    </div>
+                                </div>
+                                <!-- Review 3 -->
+                                <div class="flex gap-3 pb-3 border-b border-gray-100 dark:border-zinc-800 last:border-0 last:pb-0">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0" data-alt="Reviewer avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqgDS9Vmdj7YU5Icwq1S39T0Cf3WPNq73Ai0tlgTedxx-UTHXeDwIgHFFVLpyHlxFK6rwodBr8AMV_9d_JwFgXQyjPB0V1vjw_GcjS4lQB2O0vQNpwlB9_NJDzoZOjIAw43v91r5qM-a4ng1nQLepTx9pGypD0M-T8m7cvPxa0Lv4_SpzPeAytmyhf7qKJk_oekkoBpQzSC8r6_-2WhHJd3VAln8VOrfZCCw58DjxdVP4-g8vCXxZ9pps_vEk3ObTNCJJKhzfkEng");'></div>
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <span class="text-xs font-bold text-gray-900 dark:text-white">Michael B.</span>
+                                            <div class="flex text-yellow-400 text-[10px]">
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">"Best pizza in town! Highly recommend."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="/js/restaurant/dashboard-controller.js"></script>
+</body></html>

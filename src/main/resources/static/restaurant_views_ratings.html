@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Restaurant Reviews &amp; Ratings - Foody</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f26c0d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "text-main": "#181411",
+                        "text-secondary": "#8a7260",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 font-display transition-colors duration-200">
+<div class="flex h-screen w-full overflow-hidden">
+    <!-- Sidebar Navigation -->
+    <aside class="w-72 hidden lg:flex flex-col h-full bg-white dark:bg-[#1a1a1a] border-r border-[#e6dfdb] dark:border-gray-800">
+        <div class="p-6">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="bg-center bg-no-repeat bg-cover rounded-full h-12 w-12 shadow-sm" data-alt="Foody Partner Logo showing abstract fork and spoon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbzOpVL5sn88RtI2g7i9apdtQna2Mwww5KbEFNc1YF9xyPkwtokzeW3AqYLp8LdJD-77TlIX7-LlpF5FNAk9kJwRi4F-QvQhe2q7ZiMop-R7ZhCP8smphTCMuP2fQHytPQVNhpSvzcCPQJh4BH-Pc3UiM4ihhGvEGh8SJrLPzjpxLiP_TL-oVO-HBoE0KJMaS4XKbgTiJCKZCs-xZZAG7GdPljSesMo0mZlJKGXLt78Nq_ZLXgUI1k22lHkHu4Bcfs0hm6nRk_tgc");'></div>
+                <div class="flex flex-col">
+                    <h1 class="text-text-main dark:text-white text-lg font-bold leading-tight">Foody Partner</h1>
+                    <p class="text-text-secondary dark:text-gray-400 text-xs font-medium">Manage your restaurant</p>
+                </div>
+            </div>
+            <nav class="flex flex-col gap-2">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-background-light dark:hover:bg-gray-800 transition-colors group" href="/myRestaurant">
+                    <span class="material-symbols-outlined text-text-secondary dark:text-gray-400 group-hover:text-primary">dashboard</span>
+                    <p class="text-text-main dark:text-gray-200 text-sm font-medium">Dashboard</p>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-background-light dark:hover:bg-gray-800 transition-colors group" href="/all_orders">
+                    <span class="material-symbols-outlined text-text-secondary dark:text-gray-400 group-hover:text-primary">shopping_bag</span>
+                    <p class="text-text-main dark:text-gray-200 text-sm font-medium">Orders</p>
+                </a>
+                <!-- Active State -->
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 dark:bg-primary/20 transition-colors" href="/my_restaurant">
+                    <span class="material-symbols-outlined text-primary fill">star</span>
+                    <p class="text-primary text-sm font-bold">Reviews</p>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-background-light dark:hover:bg-gray-800 transition-colors group" href="/myMenu">
+                    <span class="material-symbols-outlined text-text-secondary dark:text-gray-400 group-hover:text-primary">menu_book</span>
+                    <p class="text-text-main dark:text-gray-200 text-sm font-medium">Menu</p>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-background-light dark:hover:bg-gray-800 transition-colors group" href="/myRestaurant">
+                    <span class="material-symbols-outlined text-text-secondary dark:text-gray-400 group-hover:text-primary">settings</span>
+                    <p class="text-text-main dark:text-gray-200 text-sm font-medium">Settings</p>
+                </a>
+            </nav>
+        </div>
+        <div class="mt-auto p-6 border-t border-[#e6dfdb] dark:border-gray-800">
+            <div class="flex items-center gap-3">
+                <div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 border-2 border-primary" data-alt="Profile picture of restaurant owner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDw5RIssKTuEzjlmCfHY19Xxl-ByX2VJxzDBbnJJCy7G-Uktbr6pqRRu2hGtyixEGLzMyQNvh2VWXTUzvzg75tCaa3cL7W10oGlBj19NG4KVkjR6PSVX1e_kZmB1Hvv3QryAKTiQf-Wx8rqvgrH0S3wX-2SlsfxdYDknuyXAI1gp-bVOgXZRVHT0CuhAlnE3BhhCHuT0lDdx1DUKIS7J-03vmLEVee_-u5ivFKFKaoRyXVrK3SLQSmQJ6zgLdqwNRtBGYm7GD8wnUY");'></div>
+                <div class="flex flex-col">
+                    <p class="text-text-main dark:text-white text-sm font-semibold">Gino's Pizzeria</p>
+                    <p class="text-text-secondary dark:text-gray-400 text-xs">gino@example.com</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        <!-- Top Bar / Breadcrumbs mobile toggle would go here -->
+        <header class="flex-none px-6 py-4 md:px-10 border-b border-[#e6dfdb] dark:border-gray-800 bg-white/50 dark:bg-[#1a1a1a]/50 backdrop-blur-md sticky top-0 z-10">
+            <div class="flex justify-between items-center max-w-5xl mx-auto w-full">
+                <div class="flex gap-2 items-center text-sm">
+                    <a class="text-text-secondary dark:text-gray-400 hover:text-primary transition-colors font-medium" href="/myRestaurant">Dashboard</a>
+                    <span class="text-text-secondary dark:text-gray-500">/</span>
+                    <span class="text-text-main dark:text-white font-semibold">Reviews</span>
+                </div>
+                <div class="lg:hidden">
+                    <span class="material-symbols-outlined text-text-main dark:text-white cursor-pointer">menu</span>
+                </div>
+            </div>
+        </header>
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 no-scrollbar">
+            <div class="max-w-5xl mx-auto flex flex-col gap-8 pb-10">
+                <!-- Page Heading -->
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-text-main dark:text-white text-3xl md:text-4xl font-black tracking-tight">Customer Feedback</h1>
+                    <p class="text-text-secondary dark:text-gray-400 text-base">View and respond to customer reviews to maintain your reputation.</p>
+                </div>
+                <!-- Rating Summary -->
+                <div class="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 shadow-sm border border-[#e6dfdb] dark:border-gray-800">
+                    <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+                        <!-- Left: Big Number -->
+                        <div class="flex flex-col gap-2 items-start lg:items-center min-w-[180px]">
+                            <span class="text-6xl font-black text-text-main dark:text-white tracking-tighter">4.5</span>
+                            <div class="flex gap-1 text-primary">
+                                <span class="material-symbols-outlined fill text-2xl">star</span>
+                                <span class="material-symbols-outlined fill text-2xl">star</span>
+                                <span class="material-symbols-outlined fill text-2xl">star</span>
+                                <span class="material-symbols-outlined fill text-2xl">star</span>
+                                <span class="material-symbols-outlined text-2xl">star_half</span>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 font-medium">1,240 reviews</p>
+                        </div>
+                        <!-- Right: Bars -->
+                        <div class="flex-1 w-full grid grid-cols-[20px_1fr_40px] items-center gap-y-3 gap-x-3">
+                            <!-- 5 Stars -->
+                            <p class="text-text-main dark:text-gray-300 text-sm font-semibold">5</p>
+                            <div class="h-2.5 w-full bg-[#f5f2f0] dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full" style="width: 70%;"></div>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 text-sm text-right">70%</p>
+                            <!-- 4 Stars -->
+                            <p class="text-text-main dark:text-gray-300 text-sm font-semibold">4</p>
+                            <div class="h-2.5 w-full bg-[#f5f2f0] dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full opacity-80" style="width: 15%;"></div>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 text-sm text-right">15%</p>
+                            <!-- 3 Stars -->
+                            <p class="text-text-main dark:text-gray-300 text-sm font-semibold">3</p>
+                            <div class="h-2.5 w-full bg-[#f5f2f0] dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full opacity-60" style="width: 8%;"></div>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 text-sm text-right">8%</p>
+                            <!-- 2 Stars -->
+                            <p class="text-text-main dark:text-gray-300 text-sm font-semibold">2</p>
+                            <div class="h-2.5 w-full bg-[#f5f2f0] dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full opacity-40" style="width: 2%;"></div>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 text-sm text-right">2%</p>
+                            <!-- 1 Star -->
+                            <p class="text-text-main dark:text-gray-300 text-sm font-semibold">1</p>
+                            <div class="h-2.5 w-full bg-[#f5f2f0] dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full opacity-20" style="width: 5%;"></div>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 text-sm text-right">5%</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Toolbar: Search & Filters -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <!-- Search -->
+                    <div class="relative flex-1">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary dark:text-gray-500">search</span>
+                        <input class="w-full h-12 pl-12 pr-4 rounded-xl bg-white dark:bg-[#1a1a1a] border border-[#e6dfdb] dark:border-gray-800 text-text-main dark:text-white placeholder:text-text-secondary dark:placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="Search by keywords (e.g. 'cold', 'delivery')" type="text"/>
+                    </div>
+                    <!-- Filters -->
+                    <div class="flex gap-3">
+                        <div class="relative">
+                            <select class="h-12 pl-4 pr-10 rounded-xl bg-white dark:bg-[#1a1a1a] border border-[#e6dfdb] dark:border-gray-800 text-text-main dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer min-w-[140px]">
+                                <option>All Ratings</option>
+                                <option>5 Stars</option>
+                                <option>4 Stars</option>
+                                <option>3 Stars</option>
+                                <option>2 Stars</option>
+                                <option>1 Star</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">expand_more</span>
+                        </div>
+                        <div class="relative">
+                            <select class="h-12 pl-4 pr-10 rounded-xl bg-white dark:bg-[#1a1a1a] border border-[#e6dfdb] dark:border-gray-800 text-text-main dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer min-w-[140px]">
+                                <option>Newest</option>
+                                <option>Oldest</option>
+                                <option>Highest Rated</option>
+                                <option>Lowest Rated</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reviews List -->
+                <div class="flex flex-col gap-6">
+                    <!-- Review Card 1 (Positive + Replied) -->
+                    <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-2xl border border-[#e6dfdb] dark:border-gray-800 shadow-sm transition-all hover:shadow-md">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
+                            <div class="flex gap-4">
+                                <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-12 w-12 flex-shrink-0 bg-cover bg-center" data-alt="Portrait of Sarah M." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAi4MEORLorD2sVD7JQyQNLtau9eSLP3JlnMMi1BrWiUneVCbGnGR3uQlo9SaTwv136YFsMLXyMz_z4qZAyYRgbRhp_EI8svHz4Osh6pidoewWzTA_PR9jLDqfazJzDPBOKD3pW61PwM64VDSgKbvxxesZuBMHHbjatfPvDqzAtX1iOJQmfObS3N2vE5R4A2hihTnOxQKinzlZC_62JCRySnfbKe5-WgZWuelp3Ktx2Cb6Ck91InumGjwDreUGYC5wGvgn5MXwGzDQ");'></div>
+                                <div>
+                                    <h3 class="text-text-main dark:text-white font-bold text-lg">Sarah Jenkins</h3>
+                                    <div class="flex gap-1 text-primary mt-1">
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-text-secondary dark:text-gray-500 text-sm font-medium whitespace-nowrap">2 days ago</span>
+                        </div>
+                        <p class="text-text-main dark:text-gray-300 leading-relaxed mb-4">
+                            Best burger in town! The delivery was super fast and the fries were still crispy. Highly recommend the truffle mayo dip, it's a game changer. Will order again for sure!
+                        </p>
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-[#f5f2f0] dark:bg-gray-800 text-text-secondary dark:text-gray-400 text-xs font-medium rounded-lg">Classic Burger</span>
+                            <span class="px-3 py-1 bg-[#f5f2f0] dark:bg-gray-800 text-text-secondary dark:text-gray-400 text-xs font-medium rounded-lg">Large Fries</span>
+                            <span class="px-3 py-1 bg-[#f5f2f0] dark:bg-gray-800 text-text-secondary dark:text-gray-400 text-xs font-medium rounded-lg">Truffle Mayo</span>
+                        </div>
+                        <!-- Existing Response -->
+                        <div class="bg-background-light dark:bg-background-dark p-4 rounded-xl border-l-4 border-primary">
+                            <div class="flex justify-between items-center mb-2">
+                                <p class="text-text-main dark:text-white font-bold text-sm">Response from Gino's Pizzeria</p>
+                                <p class="text-text-secondary dark:text-gray-500 text-xs">1 day ago</p>
+                            </div>
+                            <p class="text-text-secondary dark:text-gray-400 text-sm">Thanks so much Sarah! We're thrilled you loved the truffle mayo. It's our secret recipe! See you again soon.</p>
+                        </div>
+                    </div>
+                    <!-- Review Card 2 (Negative + Action Needed) -->
+                    <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-2xl border border-[#e6dfdb] dark:border-gray-800 shadow-sm transition-all hover:shadow-md">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
+                            <div class="flex gap-4">
+                                <div class="bg-primary/20 rounded-full h-12 w-12 flex-shrink-0 flex items-center justify-center text-primary font-bold text-xl">MJ</div>
+                                <div>
+                                    <h3 class="text-text-main dark:text-white font-bold text-lg">Mike Johnson</h3>
+                                    <div class="flex gap-1 text-primary mt-1">
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined text-sm">star_border</span>
+                                        <span class="material-symbols-outlined text-sm">star_border</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-text-secondary dark:text-gray-500 text-sm font-medium whitespace-nowrap">4 days ago</span>
+                        </div>
+                        <p class="text-text-main dark:text-gray-300 leading-relaxed mb-4">
+                            The pasta was great, but it arrived cold. I had to reheat it in the microwave which kinda ruined the texture. Delivery took 20 mins longer than estimated.
+                        </p>
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-[#f5f2f0] dark:bg-gray-800 text-text-secondary dark:text-gray-400 text-xs font-medium rounded-lg">Carbonara</span>
+                            <span class="px-3 py-1 bg-[#f5f2f0] dark:bg-gray-800 text-text-secondary dark:text-gray-400 text-xs font-medium rounded-lg">Garlic Bread</span>
+                        </div>
+                        <!-- Action Area: Reply -->
+                        <div class="flex flex-col gap-3">
+                            <button class="self-start flex items-center gap-2 text-primary font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden');">
+                                <span class="material-symbols-outlined text-lg">reply</span>
+                                Reply to review
+                            </button>
+                            <!-- Hidden Input (Toggle visualization) -->
+                            <div class="hidden flex-col gap-3 mt-2 animate-fade-in">
+                                <textarea class="w-full p-4 rounded-xl bg-background-light dark:bg-background-dark border border-[#e6dfdb] dark:border-gray-700 text-text-main dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none resize-none text-sm" placeholder="Write your response here..." rows="3"></textarea>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-text-secondary">0/500 characters</span>
+                                    <div class="flex gap-2">
+                                        <button class="px-4 py-2 rounded-lg text-text-main dark:text-white text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Cancel</button>
+                                        <button class="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium shadow-md shadow-primary/30 hover:bg-orange-600 transition-colors">Post Reply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review Card 3 (Neutral) -->
+                    <div class="bg-white dark:bg-[#1a1a1a] p-6 rounded-2xl border border-[#e6dfdb] dark:border-gray-800 shadow-sm transition-all hover:shadow-md">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
+                            <div class="flex gap-4">
+                                <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-12 w-12 flex-shrink-0 bg-cover bg-center" data-alt="Portrait of Emily R." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8FLVa7V_wArOoVPD1OdAq_hQL9nWvV_poF03ee-4Txa_3bBq0fRMq_ch-G5fvSyXP7kpGb1PGQ4LI1RSokXwOePK6A--WYkW8pA4tLpk8L9Gz5i_DGFG4_pAKug_Ta4DEeoYIP6TZbTcbv-UKkJn9SKOe1Gt0Ab6iB88PomiLS9lRR57mkthOOo60fWbJ51_6q99hxV9edqh8mkrwi8bYfxWgGht3yoCmUhWalB7NzgfAhO47w-_SwKbMyxKV4IkoYw4xrrl_UXE");'></div>
+                                <div>
+                                    <h3 class="text-text-main dark:text-white font-bold text-lg">Emily Rose</h3>
+                                    <div class="flex gap-1 text-primary mt-1">
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined fill text-sm">star</span>
+                                        <span class="material-symbols-outlined text-sm">star_border</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-text-secondary dark:text-gray-500 text-sm font-medium whitespace-nowrap">1 week ago</span>
+                        </div>
+                        <p class="text-text-main dark:text-gray-300 leading-relaxed mb-4">
+                            Good food portions and decent price. The app didn't update the tracking properly, but that's not the restaurant's fault. Pizza was solid.
+                        </p>
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-[#f5f2f0] dark:bg-gray-800 text-text-secondary dark:text-gray-400 text-xs font-medium rounded-lg">Pepperoni Pizza</span>
+                        </div>
+                        <!-- Action Area: Reply -->
+                        <div class="flex flex-col gap-3">
+                            <button class="self-start flex items-center gap-2 text-primary font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden');">
+                                <span class="material-symbols-outlined text-lg">reply</span>
+                                Reply to review
+                            </button>
+                            <div class="hidden flex-col gap-3 mt-2">
+                                <!-- ... same hidden block ... -->
+                                <textarea class="w-full p-4 rounded-xl bg-background-light dark:bg-background-dark border border-[#e6dfdb] dark:border-gray-700 text-text-main dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none resize-none text-sm" placeholder="Write your response here..." rows="3"></textarea>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-text-secondary">0/500 characters</span>
+                                    <div class="flex gap-2">
+                                        <button class="px-4 py-2 rounded-lg text-text-main dark:text-white text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Cancel</button>
+                                        <button class="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium shadow-md shadow-primary/30 hover:bg-orange-600 transition-colors">Post Reply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="flex justify-center pt-6">
+                    <button class="px-6 py-3 rounded-xl bg-white dark:bg-[#1a1a1a] border border-[#e6dfdb] dark:border-gray-800 text-text-main dark:text-white font-medium shadow-sm hover:bg-background-light dark:hover:bg-gray-800 transition-colors flex items-center gap-2">
+                        Load More Reviews
+                        <span class="material-symbols-outlined text-lg">expand_more</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body></html>

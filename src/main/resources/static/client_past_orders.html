@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Foody - Past Orders</title>
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Plus+Jakarta+Sans&display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script>
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                primary: "#f26c0d",
+                "background-light": "#f8f7f5",
+                "background-dark": "#221710",
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-[#1e1e1e] border-b border-[#f5f2f0] dark:border-[#333] px-4 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3 text-[#181411] dark:text-white cursor-pointer" onclick="window.location.href='/roles'">
+            <span class="material-symbols-outlined text-primary text-3xl">lunch_dining</span>
+            <h2 class="text-xl font-extrabold">Foody</h2>
+        </div>
+        <nav class="flex items-center gap-4">
+            <a href="/restaurants" class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary">Restaurants</a>
+            <a href="/pastOrders" class="text-sm font-bold text-primary">Past Orders</a>
+            <a href="/login" class="rounded-xl h-10 px-6 bg-primary/10 text-primary text-sm font-bold flex items-center">Login</a>
+        </nav>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-[#181411] dark:text-white mb-6">Past Orders</h1>
+
+    <!-- Search -->
+    <div class="mb-6">
+        <input type="text" placeholder="Search restaurant or dish..." class="w-full max-w-md rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20"/>
+    </div>
+
+    <!-- Filter (mock) -->
+    <div class="mb-4 flex gap-2">
+        <button type="button" class="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800">Filter</button>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] shadow-sm">
+        <table class="w-full text-left text-sm">
+            <thead class="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                <tr>
+                    <th class="px-4 py-3 font-semibold text-[#181411] dark:text-white">Order #</th>
+                    <th class="px-4 py-3 font-semibold text-[#181411] dark:text-white">Restaurant</th>
+                    <th class="px-4 py-3 font-semibold text-[#181411] dark:text-white">Date</th>
+                    <th class="px-4 py-3 font-semibold text-[#181411] dark:text-white">Status</th>
+                    <th class="px-4 py-3 font-semibold text-[#181411] dark:text-white">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="past-orders-tbody">
+                <tr><td colspan="5" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">Loading…</td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script src="/js/client/past-orders-controller.js"></script>
+
+</body>
+</html>
