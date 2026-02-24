@@ -90,8 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
           if (response.ok) return response.json();
           return readApiError(response).then(function (msg) {
             if (response.status === 401) throw new Error(msg || "Invalid email or password.");
+            if (response.status === 403) throw new Error(msg || "Please verify your email first.");
             if (response.status === 400) throw new Error(msg || "Please check your input.");
-            throw new Error(msg || "Login failed.");
+            throw new Error(msg || ("Login failed (HTTP " + response.status + ")."));
           });
         })
         .then(function (data) {
