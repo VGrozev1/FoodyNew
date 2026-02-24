@@ -21,6 +21,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByDriverIdAndStatusIn(Long driverId, List<OrderStatus> statuses);
 
+    List<Order> findByStatusIn(List<OrderStatus> statuses);
+
     List<Order> findByStatus(OrderStatus status);
 
     List<Order> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);

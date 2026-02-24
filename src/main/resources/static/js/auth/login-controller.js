@@ -1,5 +1,10 @@
 // Unified login: one page for Customer, Restaurant, Courier. Role from ?role= in URL.
 document.addEventListener("DOMContentLoaded", function () {
+  try {
+    localStorage.removeItem("foodyAuthToken");
+    localStorage.removeItem("foodyAuthRole");
+  } catch (e) {}
+
   const params = new URLSearchParams(window.location.search);
   const role = (params.get("role") || "customer").toLowerCase();
   const validRole = ["customer", "restaurant", "delivery"].includes(role) ? role : "customer";
@@ -11,6 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const tabDelivery = document.getElementById("tab-delivery");
 
   var currentRole = validRole;
+
+  function readApiError(response) {
+    return response.json().then(function (body) {
+      if (body && body.fieldErrors) {
+        var keys = Object.keys(body.fieldErrors);
+        if (keys.length) return body.fieldErrors[keys[0]];
+      }
+      if (body && body.message) return body.message;
+      return null;
+    }).catch(function () { return null; });
+  }
 
   function setActiveTab(activeRole) {
     currentRole = activeRole;
@@ -72,8 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(function (response) {
           if (response.ok) return response.json();
-          if (response.status === 401) throw new Error("Invalid email or password.");
-          throw new Error("Login failed.");
+          return readApiError(response).then(function (msg) {
+            if (response.status === 401) throw new Error(msg || "Invalid email or password.");
+            if (response.status === 400) throw new Error(msg || "Please check your input.");
+            throw new Error(msg || "Login failed.");
+          });
         })
         .then(function (data) {
           if (data && data.id != null) {
@@ -81,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
               if (currentRole === "customer") localStorage.setItem("foodyClientId", String(data.id));
               else if (currentRole === "restaurant") localStorage.setItem("foodyRestaurantId", String(data.id));
               else if (currentRole === "delivery") localStorage.setItem("foodyDriverId", String(data.id));
+              if (data.token) localStorage.setItem("foodyAuthToken", String(data.token));
+              localStorage.setItem("foodyAuthRole", currentRole);
             } catch (e) {}
           }
           window.location.href = redirectUrl;

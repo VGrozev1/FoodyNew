@@ -7,6 +7,7 @@ import com.example.demo.dto.CreateOrderRequest;
 import com.example.demo.dto.OrderItemResponseDto;
 import com.example.demo.dto.OrderResponseDto;
 import com.example.demo.dto.UpdateOrderStatusRequest;
+import jakarta.validation.Valid;
 import com.example.demo.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,12 @@ public class OrderController {
     }
 
     @PostMapping("/api/orders")
-    public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequest request) {
+    public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody CreateOrderRequest request) {
         try {
             Order order = orderService.createOrder(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(toDto(order));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
@@ -60,17 +61,14 @@ public class OrderController {
     }
 
     @PostMapping("/api/orders/{id}/status")
-    public ResponseEntity<OrderResponseDto> updateOrderStatus(@PathVariable Long id, @RequestBody UpdateOrderStatusRequest request) {
-        if (request == null || request.getStatus() == null) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<OrderResponseDto> updateOrderStatus(@PathVariable Long id, @Valid @RequestBody UpdateOrderStatusRequest request) {
         OrderStatus status;
         try {
             status = OrderStatus.valueOf(request.getStatus().toUpperCase());
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            throw new IllegalArgumentException("Invalid order status: " + request.getStatus());
         }
-        return orderService.updateStatus(id, status)
+        return orderService.updateStatus(id, status, request.getDriverId())
                 .map(this::toDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

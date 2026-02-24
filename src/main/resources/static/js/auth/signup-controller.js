@@ -66,6 +66,70 @@
     }
   }
 
+  function readApiError(response) {
+    return response.json().then(function (body) {
+      if (body && body.fieldErrors) {
+        var keys = Object.keys(body.fieldErrors);
+        if (keys.length) return body.fieldErrors[keys[0]];
+      }
+      if (body && body.message) return body.message;
+      return null;
+    }).catch(function () { return null; });
+  }
+
+  function completeEmailVerification(email, loginUrl, onFail) {
+    function askCode() {
+      var code = prompt("Enter the 6-digit verification code sent to " + email);
+      if (code == null) {
+        onFail("Verification cancelled. You can verify later before login.");
+        return;
+      }
+      var normalizedCode = String(code).trim();
+      fetch("/api/auth/verify-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, code: normalizedCode })
+      })
+        .then(function (r) {
+          if (r.ok) return r.json();
+          return readApiError(r).then(function (msg) {
+            throw new Error(msg || "Verification failed.");
+          });
+        })
+        .then(function () {
+          alert("Email verified. You can now log in.");
+          window.location.href = loginUrl;
+        })
+        .catch(function (err) {
+          var wantsResend = confirm((err.message || "Verification failed.") + "\n\nPress OK to resend code, Cancel to try entering code again.");
+          if (wantsResend) {
+            fetch("/api/auth/resend-verification", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: email })
+            })
+              .then(function (r) {
+                if (r.ok) {
+                  alert("A new verification code was sent.");
+                  askCode();
+                  return;
+                }
+                return readApiError(r).then(function (msg) {
+                  onFail(msg || "Could not resend code.");
+                });
+              })
+              .catch(function () {
+                onFail("Could not resend code.");
+              });
+          } else {
+            askCode();
+          }
+        });
+    }
+
+    askCode();
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("signupForm");
     if (!form) return;
@@ -115,12 +179,14 @@
         })
           .then(function (r) {
             if (r.ok) return r.json();
-            if (r.status === 409) throw new Error("Email already registered.");
-            throw new Error("Signup failed.");
+            return readApiError(r).then(function (msg) {
+              if (r.status === 409) throw new Error(msg || "Email already registered.");
+              if (r.status === 400) throw new Error(msg || "Please check your input.");
+              throw new Error(msg || "Signup failed.");
+            });
           })
           .then(function () {
-            alert("Account created! Redirecting to login.");
-            window.location.href = "/login";
+            completeEmailVerification(email, "/login", onFail);
           })
           .catch(function (err) {
             onFail(err.message);
@@ -143,12 +209,14 @@
         })
           .then(function (r) {
             if (r.ok) return r.json();
-            if (r.status === 409) throw new Error("Email already registered.");
-            throw new Error("Signup failed.");
+            return readApiError(r).then(function (msg) {
+              if (r.status === 409) throw new Error(msg || "Email already registered.");
+              if (r.status === 400) throw new Error(msg || "Please check your input.");
+              throw new Error(msg || "Signup failed.");
+            });
           })
           .then(function () {
-            alert("Account created! Redirecting to login.");
-            window.location.href = "/login?role=restaurant";
+            completeEmailVerification(email, "/login?role=restaurant", onFail);
           })
           .catch(function (err) {
             onFail(err.message);
@@ -164,12 +232,14 @@
         })
           .then(function (r) {
             if (r.ok) return r.json();
-            if (r.status === 409) throw new Error("Email already registered.");
-            throw new Error("Signup failed.");
+            return readApiError(r).then(function (msg) {
+              if (r.status === 409) throw new Error(msg || "Email already registered.");
+              if (r.status === 400) throw new Error(msg || "Please check your input.");
+              throw new Error(msg || "Signup failed.");
+            });
           })
           .then(function () {
-            alert("Account created! Redirecting to login.");
-            window.location.href = "/login?role=delivery";
+            completeEmailVerification(email, "/login?role=delivery", onFail);
           })
           .catch(function (err) {
             onFail(err.message);

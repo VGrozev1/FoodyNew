@@ -73,10 +73,6 @@
                     <span class="material-symbols-outlined text-text-main dark:text-gray-300 group-hover:text-primary transition-colors">account_balance_wallet</span>
                     <p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal group-hover:text-primary transition-colors">Earnings</p>
                 </a>
-                <a class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-background-light dark:hover:bg-[#3e342e] transition-colors group" href="/myDelivery">
-                    <span class="material-symbols-outlined text-text-main dark:text-gray-300 group-hover:text-primary transition-colors">settings</span>
-                    <p class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal group-hover:text-primary transition-colors">Settings</p>
-                </a>
             </nav>
         </div>
         <!-- Log out -->
@@ -101,36 +97,25 @@
                 <span>New updates available</span>
             </div>
         </header>
-        <!-- KPI Stats -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Delivery summary -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e6e0db] dark:border-[#3e342e]">
                 <div class="flex justify-between items-center">
-                    <p class="text-text-muted dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Today's Earnings</p>
+                    <p class="text-text-muted dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Earnings (delivery fee)</p>
                     <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">attach_money</span>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <p class="text-text-main dark:text-white text-3xl font-bold tracking-tight">$124.50</p>
-                    <span class="text-[#07880e] bg-[#07880e]/10 px-1.5 py-0.5 rounded text-xs font-bold">+15%</span>
+                    <p id="delivery-earnings" class="text-text-main dark:text-white text-3xl font-bold tracking-tight">$0.00</p>
+                    <span class="text-xs text-text-muted dark:text-gray-500">$2.99 per active order</span>
                 </div>
             </div>
             <div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e6e0db] dark:border-[#3e342e]">
                 <div class="flex justify-between items-center">
-                    <p class="text-text-muted dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Trips Completed</p>
+                    <p class="text-text-muted dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Active Orders</p>
                     <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">local_shipping</span>
                 </div>
                 <div class="flex items-baseline gap-2">
-                    <p class="text-text-main dark:text-white text-3xl font-bold tracking-tight">12</p>
-                    <span class="text-[#07880e] bg-[#07880e]/10 px-1.5 py-0.5 rounded text-xs font-bold">+2</span>
-                </div>
-            </div>
-            <div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e6e0db] dark:border-[#3e342e]">
-                <div class="flex justify-between items-center">
-                    <p class="text-text-muted dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Online Time</p>
-                    <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">schedule</span>
-                </div>
-                <div class="flex items-baseline gap-2">
-                    <p class="text-text-main dark:text-white text-3xl font-bold tracking-tight">4h 20m</p>
-                    <span class="text-[#07880e] bg-[#07880e]/10 px-1.5 py-0.5 rounded text-xs font-bold">+30m</span>
+                    <p id="delivery-active-count" class="text-text-main dark:text-white text-3xl font-bold tracking-tight">0</p>
                 </div>
             </div>
         </section>
@@ -142,78 +127,7 @@
             </div>
             <div id="delivery-orders-list" class="flex flex-col gap-4"></div>
         </section>
-        <!-- Order History List -->
-        <section class="flex flex-col gap-4 pb-8">
-            <div class="flex items-center justify-between">
-                <h3 class="text-text-main dark:text-white text-xl font-bold leading-tight">Recent Deliveries</h3>
-                <a class="text-primary text-sm font-bold hover:underline" href="/myDelivery">View All</a>
-            </div>
-            <div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-[#e6e0db] dark:border-[#3e342e] shadow-sm overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                        <tr class="border-b border-gray-200 dark:border-gray-700">
-                            <th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-muted dark:text-gray-500">Order ID</th>
-                            <th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-muted dark:text-gray-500">Restaurant</th>
-                            <th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-muted dark:text-gray-500">Customer Address</th>
-                            <th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-muted dark:text-gray-500 text-right">Earnings</th>
-                            <th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-muted dark:text-gray-500 text-center">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-                        <tr class="hover:bg-gray-50 dark:hover:bg-[#342a25] transition-colors group">
-                            <td class="py-4 px-6 text-sm font-medium text-text-main dark:text-white">#4919</td>
-                            <td class="py-4 px-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-medium text-text-main dark:text-white">Sushi Master</span>
-                                    <span class="text-xs text-text-muted dark:text-gray-500">2:15 PM</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6 text-sm text-text-muted dark:text-gray-400">882 West Ave, Apt 4B</td>
-                            <td class="py-4 px-6 text-sm font-bold text-text-main dark:text-white text-right">$12.40</td>
-                            <td class="py-4 px-6 text-center">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-                                            Delivered
-                                        </span>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-[#342a25] transition-colors group">
-                            <td class="py-4 px-6 text-sm font-medium text-text-main dark:text-white">#4918</td>
-                            <td class="py-4 px-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-medium text-text-main dark:text-white">Pizza Hut</span>
-                                    <span class="text-xs text-text-muted dark:text-gray-500">1:45 PM</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6 text-sm text-text-muted dark:text-gray-400">1901 Thornridge Cir.</td>
-                            <td class="py-4 px-6 text-sm font-bold text-text-main dark:text-white text-right">$8.50</td>
-                            <td class="py-4 px-6 text-center">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-                                            Delivered
-                                        </span>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-[#342a25] transition-colors group">
-                            <td class="py-4 px-6 text-sm font-medium text-text-main dark:text-white">#4917</td>
-                            <td class="py-4 px-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-medium text-text-main dark:text-white">Starbucks</span>
-                                    <span class="text-xs text-text-muted dark:text-gray-500">11:20 AM</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6 text-sm text-text-muted dark:text-gray-400">4140 Parker Rd.</td>
-                            <td class="py-4 px-6 text-sm font-bold text-text-main dark:text-white text-right">$5.20</td>
-                            <td class="py-4 px-6 text-center">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
-                                            Canceled
-                                        </span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+        <!-- Dashboard intentionally focused on active orders only -->
     </div>
 </main>
 <script src="/js/auth/auth-header.js"></script>

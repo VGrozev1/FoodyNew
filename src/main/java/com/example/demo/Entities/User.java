@@ -24,6 +24,9 @@ public class User {
     private Role role;
 
     private boolean active = true;
+    private Boolean emailVerified;
+    private String verificationCode;
+    private LocalDateTime verificationCodeExpiresAt;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -81,6 +84,32 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isEmailVerified() {
+        // Legacy users created before verification rollout may have null.
+        // Treat null as verified so existing accounts can still log in.
+        return emailVerified == null || Boolean.TRUE.equals(emailVerified);
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public LocalDateTime getVerificationCodeExpiresAt() {
+        return verificationCodeExpiresAt;
+    }
+
+    public void setVerificationCodeExpiresAt(LocalDateTime verificationCodeExpiresAt) {
+        this.verificationCodeExpiresAt = verificationCodeExpiresAt;
     }
 
     public LocalDateTime getCreatedAt() {

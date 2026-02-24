@@ -23,6 +23,7 @@ public class UserTestLoader implements CommandLineRunner {
             u.setPasswordHash("test");
             u.setRole(Role.CLIENT);
             u.setActive(true);
+            u.setEmailVerified(true);
 
             userRepository.save(u);
             System.out.println("Test user saved");

@@ -59,7 +59,6 @@
         <div class="hidden md:flex flex-1 justify-center gap-8">
             <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="/myDelivery">Dashboard</a>
             <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="/myDelivery">Earnings</a>
-            <a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="/myDelivery">Settings</a>
         </div>
         <div class="flex items-center gap-4">
             <button class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary/10 text-primary text-sm font-bold leading-normal hover:bg-primary/20 transition-colors">
@@ -77,7 +76,7 @@
     <!-- Main Content Layout -->
     <main class="flex-1 flex justify-center py-6 px-4 md:px-8 lg:px-12">
         <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <!-- Left Column: Logistics (Map, Status, Actions) -->
+            <!-- Left Column: Logistics (Status, Actions) -->
             <div class="lg:col-span-8 flex flex-col gap-6">
                 <!-- Order Header & Actions -->
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -112,20 +111,6 @@
                         <span class="text-primary font-bold">Preparing</span>
                         <span>Picked Up</span>
                         <span>Delivered</span>
-                    </div>
-                </div>
-                <!-- Map Section -->
-                <div class="relative w-full aspect-video md:aspect-[2.5/1] rounded-xl overflow-hidden shadow-sm group">
-                    <div class="absolute inset-0 bg-center bg-cover" data-alt="Map showing route from restaurant to customer" data-location="New York City" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6k7TUT2Mmry7Qp7KQa9jC1sksllJ51ac21OGWy7YH-v5GTw_hufKBiN4XOfEEeJ4ObAAl1nyWVYMTrfvZk-BqgJZXfOPTLunWCQ3SQoT47f9pEMNCW1r0iri-AUED5kdEcLhDyUtnxyY0X6CUzG3csGer-_DhZF2l3JSdnETOEoLNEMjhvXOn0qe9HGV4p-G3EBqEfvqPozPQAaz-75qZ_G_8Wo_sOk7MTxW7GFUoMZgweH8tdsUcEkwmACuXzic85WuQNR9P30A");'></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <!-- Floating Map Controls -->
-                    <div class="absolute bottom-4 right-4 flex gap-2">
-                        <button class="size-10 bg-white dark:bg-[#2d2017] text-text-main-light dark:text-text-main-dark rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-[#3d3027] transition-colors">
-                            <span class="material-symbols-outlined">near_me</span>
-                        </button>
-                        <button class="size-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors">
-                            <span class="material-symbols-outlined">navigation</span>
-                        </button>
                     </div>
                 </div>
                 <!-- Logistics Info Cards (Pickup / Dropoff) -->

@@ -10,4 +10,10 @@ import lombok.NoArgsConstructor;
 public class LoginResponse {
     private Long id;
     private String role; // "CLIENT", "RESTAURANT", "DRIVER"
+    private String token;
+
+    public LoginResponse(Long id, String role) {
+        this.id = id;
+        this.role = role;
+    }
 }

@@ -5,6 +5,7 @@ import com.example.demo.Entities.Order;
 import com.example.demo.Entities.OrderStatus;
 import com.example.demo.Entities.Restaurant;
 import com.example.demo.dto.*;
+import jakarta.validation.Valid;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.RestaurantService;
 import org.springframework.http.HttpStatus;
@@ -96,24 +97,24 @@ public class RestaurantController {
     }
 
     @PostMapping("/{id}/menuItems")
-    public ResponseEntity<MenuItemDto> createMenuItem(@PathVariable Long id, @RequestBody CreateMenuItemRequest request) {
+    public ResponseEntity<MenuItemDto> createMenuItem(@PathVariable Long id, @Valid @RequestBody CreateMenuItemRequest request) {
         try {
             MenuItem item = restaurantService.createMenuItem(id, request);
             return ResponseEntity.status(HttpStatus.CREATED).body(menuItemToDto(item));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+            throw e;
         }
     }
 
     @PutMapping("/{id}/menuItems/{itemId}")
-    public ResponseEntity<MenuItemDto> updateMenuItem(@PathVariable Long id, @PathVariable Long itemId, @RequestBody CreateMenuItemRequest request) {
+    public ResponseEntity<MenuItemDto> updateMenuItem(@PathVariable Long id, @PathVariable Long itemId, @Valid @RequestBody CreateMenuItemRequest request) {
         try {
             return restaurantService.updateMenuItem(id, itemId, request)
                     .map(this::menuItemToDto)
                     .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            throw e;
         }
     }
 
