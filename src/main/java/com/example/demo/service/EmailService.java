@@ -5,7 +5,6 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 @Service
 public class EmailService {
 
@@ -18,6 +17,8 @@ public class EmailService {
     }
 
     public void sendVerificationCode(String toEmail, String code) {
+        System.out.println(System.getenv("MAIL_PASSWORD")+(System.getenv("MAIL_USERNAME")));
+        System.out.println(System.getProperty("MAIL_PASSWORD")+(System.getProperty("MAIL_USERNAME")));
         if (toEmail == null || toEmail.isBlank()) return;
         if (fromAddress == null || fromAddress.isBlank()) {
             throw new IllegalArgumentException("Email sending is not configured. Set MAIL_USERNAME, MAIL_PASSWORD and MAIL_FROM before signup.");
