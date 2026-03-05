@@ -36,4 +36,4 @@ foody:
       secret: your-super-long-foody-jwt-secret-change-this-in-production-123456
       expiration-ms: 86400000
   mail:
-    from: ${MAIL_FROM:${MAIL_USERNAME:}}
+    from: ${MAIL_FROM:foodydeliveryapp@gmail.com}
