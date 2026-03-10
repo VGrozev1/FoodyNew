@@ -170,3 +170,39 @@ Status legend: ✅ = completed, 🔜 = planned / to do
     - Overview of main routes.
   - Seed DB with demo data using `data.sql` or a more complete `UserTestLoader`.
 
+---
+
+### Improvement suggestions (choose what to proceed with)
+
+Pick any item below; we can implement it next. Each is marked **\*NEW\*** so you can easily find and decide.
+
+- **\*NEW\*** **Email deliverability (DKIM / own domain)**  
+  - Buy a cheap domain, add it in Brevo, set DKIM/DMARC DNS. Use `no-reply@yourdomain.com` as sender so Gmail/Yahoo/Microsoft accept mail and it doesn’t go to spam.
+
+- **\*NEW\*** **Password hashing**  
+  - Replace plaintext passwords with bcrypt (or Argon2) in `AuthService` and login checks. Store only hashes in DB.
+
+- **\*NEW\*** **Secrets from environment only**  
+  - Move DB URL/username/password and JWT secret out of `application.yaml` into env vars (e.g. `DATABASE_URL`, `JWT_SECRET`) so nothing sensitive is committed; document required vars in README.
+
+- **\*NEW\*** **Remove unused SMTP config**  
+  - Delete `spring.mail` from `application.yaml` (we use Brevo API now). Keeps config clean and avoids confusion.
+
+- **\*NEW\*** **README for run + env**  
+  - Add or update README: how to run locally (`./mvnw spring-boot:run`), required env vars (`BREVO_API_KEY`, `MAIL_FROM`, DB vars, JWT if moved), and optional Railway/Deploy notes.
+
+- **\*NEW\*** **Structured API errors in one place**  
+  - Ensure all controllers use the same error DTO and status codes; frontend shows a single “message” from API errors (login, signup, orders) for consistency.
+
+- **\*NEW\*** **Rate limit signup / verify-email**  
+  - Add simple rate limiting (e.g. per IP or per email) on signup and resend-verification to reduce abuse and Brevo usage.
+
+- **\*NEW\*** **Optional: Thymeleaf for key pages**  
+  - Convert one or two heavy static HTML pages (e.g. login, signup) to Thymeleaf templates for less duplication and easier i18n later.
+
+- **\*NEW\*** **Health or readiness endpoint**  
+  - Add `GET /actuator/health` (or a simple `/api/health`) for Railway/monitoring to check if the app is up and optionally DB connectivity.
+
+- **\*NEW\*** **Stronger JWT secret in production**  
+  - Load JWT secret from env (e.g. `JWT_SECRET`) with no default in production; keep a dev default only for local runs.
+

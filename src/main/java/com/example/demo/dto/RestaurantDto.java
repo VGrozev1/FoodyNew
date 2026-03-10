@@ -13,4 +13,6 @@ public class RestaurantDto {
     private String description;
     private String address;
     private boolean open;
+    private String cuisine;
+    private Integer priceRange;
 }

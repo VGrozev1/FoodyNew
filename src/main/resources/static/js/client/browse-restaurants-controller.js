@@ -1,6 +1,11 @@
 (function () {
     var DEFAULT_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuBW-z9nrmaexIPZAFtnJYK1ij5-bhwtSzISveBV3HJm7RNINkHNdKWDPjUwqKcCsFsuk2GwdBWUJinbZn9jBH46iwUfODcaC0P5jgDqg_UWLgT5FV7F69q22Y0z8MhX3UUajfgE3d_6_MtaYeIyU2mds6v_oH6ernrXlUReQmmK1IA5y0Lsx-4DL8uvqrDs1cpOHPf3LXvj5XZuCEYp3WJW7mLbBgtBDnD6TN7_193U3R6aw9oRRk3Jfe6Vdd9dnhVWHhgwRPRX6kQ";
 
+    function priceSymbols(priceRange) {
+        if (priceRange == null || priceRange < 1) return "$$";
+        return "$".repeat(Math.min(priceRange, 4));
+    }
+
     function renderRestaurantCard(r) {
         var id = r.id;
         var name = escapeHtml(r.name || "Restaurant");
@@ -9,6 +14,7 @@
         var openLabel = open ? "Open" : "Closed";
         var openClass = open ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400" : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400";
         var img = DEFAULT_IMAGE;
+        var priceStr = priceSymbols(r.priceRange);
         return (
             '<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-light dark:bg-surface-dark p-3 shadow-sm border border-border-light dark:border-border-dark hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer" data-restaurant-id="' + id + '">' +
             '  <div class="relative h-48 w-full overflow-hidden rounded-lg">' +
@@ -26,7 +32,7 @@
             '    <div class="flex items-center gap-3 text-sm text-text-secondary dark:text-gray-400 mt-1">' +
             '      <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Delivery</span>' +
             '      <span class="w-1 h-1 rounded-full bg-gray-300"></span>' +
-            '      <span class="text-primary font-bold">$$</span>' +
+            '      <span class="text-primary font-bold">' + escapeHtml(priceStr) + '</span>' +
             '    </div>' +
             '  </div>' +
             '</div>'
@@ -39,14 +45,29 @@
         return div.innerHTML;
     }
 
+    function getFilterParams() {
+        var params = new URLSearchParams(window.location.search);
+        return {
+            cuisine: params.get("cuisine") || "",
+            priceRange: params.get("priceRange") || ""
+        };
+    }
+
     function loadRestaurants() {
         var grid = document.getElementById("restaurant-grid");
         var countEl = document.getElementById("restaurant-count");
         if (!grid) return;
 
+        var filters = getFilterParams();
+        var url = "/api/restaurants";
+        var parts = [];
+        if (filters.cuisine) parts.push("cuisine=" + encodeURIComponent(filters.cuisine));
+        if (filters.priceRange) parts.push("priceRange=" + encodeURIComponent(filters.priceRange));
+        if (parts.length) url += "?" + parts.join("&");
+
         grid.innerHTML = '<p class="col-span-full text-center text-text-secondary dark:text-gray-400 py-12">Loading restaurants…</p>';
 
-        fetch("/api/restaurants")
+        fetch(url)
             .then(function (res) {
                 if (!res.ok) throw new Error("Could not load restaurants");
                 return res.json();
@@ -96,14 +117,50 @@
         categoryLinks.forEach(function (link) {
             link.addEventListener("click", function (e) {
                 e.preventDefault();
-                var categoryName = link.querySelector("span") ? link.querySelector("span").textContent.trim() : "";
-                var grid = document.getElementById("restaurant-grid");
-                if (grid && categoryName) {
-                    grid.innerHTML = "<h2 class=\"col-span-full text-center text-2xl py-20\">Loading " + categoryName + "…</h2>";
-                    loadRestaurants();
-                }
+                var cuisine = link.getAttribute("data-cuisine") || (link.querySelector("span") ? link.querySelector("span").textContent.trim().toLowerCase() : "");
+                if (!cuisine) return;
+                var params = new URLSearchParams(window.location.search);
+                params.set("cuisine", cuisine);
+                params.delete("priceRange");
+                window.location.search = params.toString();
             });
         });
+
+        var priceBtns = document.querySelectorAll("[data-price]");
+        var filters = getFilterParams();
+        priceBtns.forEach(function (btn) {
+            var level = btn.getAttribute("data-price");
+            if (!level) return;
+            var levels = filters.priceRange ? filters.priceRange.split(",").map(function (s) { return s.trim(); }) : [];
+            var isSelected = levels.indexOf(level) !== -1;
+            btn.classList.toggle("bg-primary", isSelected);
+            btn.classList.toggle("text-white", isSelected);
+            btn.classList.toggle("border-primary", isSelected);
+            btn.classList.toggle("bg-white", !isSelected);
+            btn.classList.toggle("dark:bg-surface-dark", !isSelected);
+            btn.classList.toggle("border-border-light", !isSelected);
+            btn.classList.toggle("dark:border-border-dark", !isSelected);
+            btn.classList.toggle("text-text-secondary", !isSelected);
+            btn.classList.toggle("dark:text-gray-400", !isSelected);
+            btn.addEventListener("click", function () {
+                var params = new URLSearchParams(window.location.search);
+                var current = params.get("priceRange") ? params.get("priceRange").split(",").map(function (s) { return s.trim(); }).filter(Boolean) : [];
+                var idx = current.indexOf(level);
+                if (idx === -1) current.push(level);
+                else current.splice(idx, 1);
+                current.sort();
+                if (current.length) params.set("priceRange", current.join(","));
+                else params.delete("priceRange");
+                window.location.search = params.toString();
+            });
+        });
+
+        var resetBtn = document.getElementById("filter-reset-btn");
+        if (resetBtn) {
+            resetBtn.addEventListener("click", function () {
+                window.location.search = "";
+            });
+        }
     }
 
     if (document.readyState === "loading") {

@@ -8,6 +8,8 @@ import com.example.demo.dto.CreateMenuItemRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,21 @@ public class RestaurantService {
     }
 
     public List<Restaurant> findAll() {
+        return restaurantRepository.findAll();
+    }
+
+    public List<Restaurant> findFiltered(String cuisine, List<Integer> priceRanges) {
+        boolean hasCuisine = cuisine != null && !cuisine.trim().isEmpty();
+        boolean hasPrice = priceRanges != null && !priceRanges.isEmpty();
+        if (hasCuisine && hasPrice) {
+            return restaurantRepository.findByCuisineIgnoreCaseAndPriceRangeIn(cuisine.trim(), priceRanges);
+        }
+        if (hasCuisine) {
+            return restaurantRepository.findByCuisineIgnoreCase(cuisine.trim());
+        }
+        if (hasPrice) {
+            return restaurantRepository.findByPriceRangeIn(priceRanges);
+        }
         return restaurantRepository.findAll();
     }
 

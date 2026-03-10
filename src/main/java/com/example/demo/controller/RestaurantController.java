@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,10 +33,28 @@ public class RestaurantController {
     }
 
     @GetMapping
-    public List<RestaurantDto> getAll() {
-        return restaurantService.findAll().stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
+    public List<RestaurantDto> getAll(
+            @RequestParam(required = false) String cuisine,
+            @RequestParam(required = false) String priceRange
+    ) {
+        List<Integer> priceRanges = parsePriceRanges(priceRange);
+        List<Restaurant> list = restaurantService.findFiltered(cuisine, priceRanges);
+        return list.stream().map(this::toDto).collect(Collectors.toList());
+    }
+
+    private List<Integer> parsePriceRanges(String priceRange) {
+        if (priceRange == null || priceRange.trim().isEmpty()) return Collections.emptyList();
+        try {
+            return Arrays.stream(priceRange.split(","))
+                    .map(String::trim)
+                    .filter(s -> !s.isEmpty())
+                    .map(Integer::parseInt)
+                    .filter(n -> n >= 1 && n <= 4)
+                    .distinct()
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            return Collections.emptyList();
+        }
     }
 
     @GetMapping("/{id}")
@@ -138,7 +158,8 @@ public class RestaurantController {
     }
 
     private RestaurantDto toDto(Restaurant r) {
-        return new RestaurantDto(r.getId(), r.getName(), r.getDescription(), r.getAddress(), r.isOpen());
+        return new RestaurantDto(r.getId(), r.getName(), r.getDescription(), r.getAddress(), r.isOpen(),
+                r.getCuisine(), r.getPriceRange());
     }
 
     private MenuItemDto menuItemToDto(MenuItem m) {

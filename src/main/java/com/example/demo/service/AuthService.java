@@ -109,6 +109,8 @@ public class AuthService {
         restaurant.setDescription(description);
         restaurant.setAddress(address);
         restaurant.setOpen(false);
+        restaurant.setCuisine("general");
+        restaurant.setPriceRange(2);
         return restaurantRepository.save(restaurant);
     }
 
@@ -217,6 +219,8 @@ public class AuthService {
             r.setDescription("");
             r.setAddress("");
             r.setOpen(false);
+            r.setCuisine("general");
+            r.setPriceRange(2);
             return restaurantRepository.save(r);
         });
     }

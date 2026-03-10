@@ -18,6 +18,9 @@ public class Restaurant {
     private String description;
     private String address;
     private boolean open;
+    private String cuisine;       // e.g. burger, pizza, sushi, asian, mexican, healthy, dessert
+    @Column(name = "price_range")
+    private Integer priceRange;   // 1=$, 2=$$, 3=$$$, 4=$$$$
 
     public Restaurant() {}
 
@@ -63,5 +66,21 @@ public class Restaurant {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
+    }
+
+    public Integer getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(Integer priceRange) {
+        this.priceRange = priceRange;
     }
 }
